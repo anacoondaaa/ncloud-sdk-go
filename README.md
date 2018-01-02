@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/NaverCloudPlatform/ncloud-sdk-go/blob/master/LICENSE)
+
 # ncloud-sdk-go
 
 ncloud-sdk-go is the official Naver Cloud Platform SDK for the Go programming language.
@@ -9,8 +11,6 @@ go get github.com/NaverCloudPlatform/ncloud-sdk-go
 ```
 
 ### License
-
-ncloud-sdk-go is is released under the [MIT license](http://github.com/NaverCloudPlatform/ncloud-sdk-go/LICENSE)
 
 ```
 Copyright 2017 NAVER BUSINESS PLATFORM Corp.
