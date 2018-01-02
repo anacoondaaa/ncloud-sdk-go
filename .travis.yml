@@ -10,7 +10,7 @@ install: true
 
 script: 
   - make deps
-  - make test
+  - go test -v ./...
   - make build
 
 matrix:
