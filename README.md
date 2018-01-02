@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/NaverCloudPlatform/ncloud-sdk-go.svg?branch=master)](https://travis-ci.org/NaverCloudPlatform/ncloud-sdk-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/NaverCloudPlatform/ncloud-sdk-go)](https://goreportcard.com/report/github.com/NaverCloudPlatform/ncloud-sdk-go)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/NaverCloudPlatform/ncloud-sdk-go/blob/master/LICENSE)
 
 # ncloud-sdk-go
