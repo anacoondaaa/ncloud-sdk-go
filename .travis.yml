@@ -7,7 +7,6 @@ go:
   - master
 
 install:
-  - go get -v ./...
   - go get github.com/onsi/gomega
   - go get github.com/onsi/ginkgo
   - export PATH=$PATH:$HOME/gopath/bin
