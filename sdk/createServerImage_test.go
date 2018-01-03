@@ -1,8 +1,8 @@
 package sdk_test
 
 import (
-	gock "gopkg.in/h2non/gock.v1"
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

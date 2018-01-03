@@ -30,9 +30,9 @@ func String(length int) string {
 	return StringWithCharset(length, charset)
 }
 
-func TestServer(t *testing.T) {
+func TestSDK(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Server Suite")
+	RunSpecs(t, "SDK Suite")
 }
 
 var _ = BeforeSuite(func() {
