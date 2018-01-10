@@ -3,8 +3,8 @@ package oauth_test
 import (
 	"net/http"
 
-	gock "gopkg.in/h2non/gock.v1"
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/oauth"
+	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

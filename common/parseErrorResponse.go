@@ -15,6 +15,6 @@ func ParseErrorResponse(bytes []byte) (*ResponseError, error) {
 	if responseError.ReturnMessage != "" {
 		responseError.ReturnMessage = strings.TrimSpace(responseError.ReturnMessage)
 	}
-	
+
 	return &responseError, nil
 }

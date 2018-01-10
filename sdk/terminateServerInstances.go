@@ -49,7 +49,7 @@ func (s *Conn) TerminateServerInstances(reqParams *RequestTerminateServerInstanc
 		respError.ReturnCode = responseError.ReturnCode
 		respError.ReturnMessage = responseError.ReturnMessage
 
-		return &respError, fmt.Errorf("%s %s", resp.Status, string(bytes))
+		return &respError, fmt.Errorf("%s %s - error code: %d , error message: %s", resp.Status, string(bytes), responseError.ReturnCode, responseError.ReturnMessage)
 	}
 
 	var serverInstanceList = ServerInstanceList{}
