@@ -65,7 +65,7 @@ func (s *Conn) GetLoginKeyList(reqParams *RequestGetLoginKeyList) (*LoginKeyList
 		respError.ReturnCode = responseError.ReturnCode
 		respError.ReturnMessage = responseError.ReturnMessage
 
-		return &respError, fmt.Errorf("%s %s", resp.Status, string(bytes))
+		return &respError,  fmt.Errorf("error code: %d , error message: %s", responseError.ReturnCode, responseError.ReturnMessage)
 	}
 
 	loginKeyList := LoginKeyList{}
