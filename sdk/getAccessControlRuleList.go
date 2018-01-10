@@ -49,7 +49,7 @@ func (s *Conn) GetAccessControlRuleList(accessControlGroupConfigurationNo string
 		respError.ReturnCode = responseError.ReturnCode
 		respError.ReturnMessage = responseError.ReturnMessage
 
-		return &respError, fmt.Errorf("error code: %d , error message: %s", responseError.ReturnCode, responseError.ReturnMessage)
+		return &respError, fmt.Errorf("%s %s - error code: %d , error message: %s", resp.Status, string(bytes), responseError.ReturnCode, responseError.ReturnMessage)
 	}
 
 	var AccessControlRuleList = AccessControlRuleList{}
