@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"strings"
 
 	common "github.com/NaverCloudPlatform/ncloud-sdk-go/common"
 	request "github.com/NaverCloudPlatform/ncloud-sdk-go/request"
@@ -46,6 +47,13 @@ func processCreateBlockStorageInstanceParams(reqParams *RequestBlockStorageInsta
 	}
 
 	params["serverInstanceNo"] = reqParams.ServerInstanceNo
+
+	if reqParams.DiskDetailTypeCode != "" {
+		if strings.Compare(strings.ToLower(reqParams.DiskDetailTypeCode), "hdd") != 0 && strings.Compare(strings.ToLower(reqParams.DiskDetailTypeCode), "ssd") != 0 {
+			return nil, errors.New("DiskDetailTypeCode should be `SSD` or `HDD`")
+		}
+		params["diskDetailTypeCode"] = reqParams.DiskDetailTypeCode
+	}
 
 	return params, nil
 }
