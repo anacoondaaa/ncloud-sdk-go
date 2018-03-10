@@ -278,6 +278,7 @@ type RequestBlockStorageInstance struct {
 	BlockStorageSize        int
 	BlockStorageDescription string
 	ServerInstanceNo        string
+	DiskDetailTypeCode  string
 }
 
 type RequestBlockStorageInstanceList struct {
