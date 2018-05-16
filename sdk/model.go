@@ -237,6 +237,10 @@ type RequestStopServerInstances struct {
 	ServerInstanceNoList []string
 }
 
+type RequestStartServerInstances struct {
+	ServerInstanceNoList []string
+}
+
 type RequestTerminateServerInstances struct {
 	ServerInstanceNoList []string
 }
@@ -278,7 +282,7 @@ type RequestBlockStorageInstance struct {
 	BlockStorageSize        int
 	BlockStorageDescription string
 	ServerInstanceNo        string
-	DiskDetailTypeCode  string
+	DiskDetailTypeCode      string
 }
 
 type RequestBlockStorageInstanceList struct {
