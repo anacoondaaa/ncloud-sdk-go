@@ -180,6 +180,11 @@ type RequestCreatePublicIPInstance struct {
 	RegionNo             string
 }
 
+type RequestAssociatePublicIP struct {
+	ServerInstanceNo   string
+	PublicIPInstanceNo string
+}
+
 type RequestPublicIPInstanceList struct {
 	IsAssociated           bool
 	PublicIPInstanceNoList []string
