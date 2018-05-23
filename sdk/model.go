@@ -241,6 +241,10 @@ type RequestTerminateServerInstances struct {
 	ServerInstanceNoList []string
 }
 
+type RequestRebootServerInstances struct {
+	ServerInstanceNoList []string
+}
+
 // RequestGetRootPassword : Request to get root password of the server
 type RequestGetRootPassword struct {
 	ServerInstanceNo string
@@ -278,7 +282,7 @@ type RequestBlockStorageInstance struct {
 	BlockStorageSize        int
 	BlockStorageDescription string
 	ServerInstanceNo        string
-	DiskDetailTypeCode  string
+	DiskDetailTypeCode      string
 }
 
 type RequestBlockStorageInstanceList struct {
