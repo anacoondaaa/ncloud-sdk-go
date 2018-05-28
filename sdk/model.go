@@ -254,6 +254,11 @@ type RequestRebootServerInstances struct {
 	ServerInstanceNoList []string
 }
 
+type RequestChangeServerInstanceSpec struct {
+	ServerInstanceNo  string
+	ServerProductCode string
+}
+
 // RequestGetRootPassword : Request to get root password of the server
 type RequestGetRootPassword struct {
 	ServerInstanceNo string
