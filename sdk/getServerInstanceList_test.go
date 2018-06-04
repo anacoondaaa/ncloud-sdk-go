@@ -55,7 +55,9 @@ var _ = Describe("Get Server Instance List", func() {
 							<zone>
 								<zoneNo>2</zoneNo>
 								<zoneName>KR-1</zoneName>
-								<zoneDescription>KR-1 zone</zoneDescription>
+								<zoneCode>KR-1</zoneCode>
+								<zoneDescription>가산 zone</zoneDescription>
+								<regionNo>1</regionNo>
 							</zone>
 							<region>
 								<regionNo>1</regionNo>
@@ -117,9 +119,11 @@ var _ = Describe("Get Server Instance List", func() {
 							<isProtectServerTermination>false</isProtectServerTermination>
 							<portForwardingPublicIp>192.168.120.140</portForwardingPublicIp>
 							<zone>
-								<zoneNo>2</zoneNo>
-								<zoneName>KR-1</zoneName>
-								<zoneDescription>KR-1 zone</zoneDescription>
+								<zoneNo>3</zoneNo>
+								<zoneName>KR-2</zoneName>
+								<zoneCode>KR-2</zoneCode>
+								<zoneDescription>평촌 zone</zoneDescription>
+								<regionNo>1</regionNo>
 							</zone>
 							<region>
 								<regionNo>1</regionNo>
@@ -175,7 +179,9 @@ var _ = Describe("Get Server Instance List", func() {
 							<zone>
 								<zoneNo>2</zoneNo>
 								<zoneName>KR-1</zoneName>
-								<zoneDescription>KR-1 zone</zoneDescription>
+								<zoneCode>KR-1</zoneCode>
+								<zoneDescription>가산 zone</zoneDescription>
+								<regionNo>1</regionNo>
 							</zone>
 							<region>
 								<regionNo>1</regionNo>
@@ -239,7 +245,9 @@ var _ = Describe("Get Server Instance List", func() {
 							<zone>
 								<zoneNo>2</zoneNo>
 								<zoneName>KR-1</zoneName>
-								<zoneDescription>KR-1 zone</zoneDescription>
+								<zoneCode>KR-1</zoneCode>
+								<zoneDescription>가산 zone</zoneDescription>
+								<regionNo>1</regionNo>
 							</zone>
 							<region>
 								<regionNo>1</regionNo>
@@ -293,7 +301,11 @@ var _ = Describe("Get Server Instance List", func() {
 			Expect(serverinstance.LoginKeyName).To(Equal("bk-test"))
 			Expect(serverinstance.Region.RegionCode).To(Equal("KR"))
 			Expect(serverinstance.Region.RegionName).To(Equal("Korea"))
+			Expect(serverinstance.Zone.ZoneNo).To(Equal("2"))
 			Expect(serverinstance.Zone.ZoneName).To(Equal("KR-1"))
+			Expect(serverinstance.Zone.ZoneCode).To(Equal("KR-1"))
+			Expect(serverinstance.Zone.ZoneDescription).To(Equal("가산 zone"))
+			Expect(serverinstance.Zone.RegionNo).To(Equal("1"))
 			Expect(serverinstance.PlatformType.Code).To(Equal("LNX64"))
 			Expect(serverinstance.ServerInstanceStatusName).To(Equal("stopped"))
 			Expect(serverinstance.PortForwardingPublicIP).To(Equal("192.168.120.140"))
@@ -310,7 +322,11 @@ var _ = Describe("Get Server Instance List", func() {
 			Expect(serverinstance.LoginKeyName).To(Equal("penguin"))
 			Expect(serverinstance.Region.RegionCode).To(Equal("KR"))
 			Expect(serverinstance.Region.RegionName).To(Equal("Korea"))
-			Expect(serverinstance.Zone.ZoneName).To(Equal("KR-1"))
+			Expect(serverinstance.Zone.ZoneNo).To(Equal("3"))
+			Expect(serverinstance.Zone.ZoneName).To(Equal("KR-2"))
+			Expect(serverinstance.Zone.ZoneCode).To(Equal("KR-2"))
+			Expect(serverinstance.Zone.ZoneDescription).To(Equal("평촌 zone"))
+			Expect(serverinstance.Zone.RegionNo).To(Equal("1"))
 			Expect(serverinstance.PlatformType.Code).To(Equal("LNX64"))
 			Expect(serverinstance.ServerInstanceStatusName).To(Equal("booting"))
 			Expect(serverinstance.PortForwardingPublicIP).To(Equal("192.168.120.140"))
