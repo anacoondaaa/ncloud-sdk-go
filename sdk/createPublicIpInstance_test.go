@@ -105,6 +105,13 @@ var _ = Describe("Create Public IP", func() {
 					</accessControlGroup>
 					</accessControlGroupList>
 					</serverInstanceAssociatedWithPublicIp>
+					<zone>
+          <zoneNo>3</zoneNo>
+          <zoneName>KR-2</zoneName>
+          <zoneCode>KR-2</zoneCode>
+          <zoneDescription>평촌 zone</zoneDescription>
+          <regionNo>1</regionNo>
+          </zone>
 					</publicIpInstance>
 					</publicIpInstanceList>
 					</createPublicIpInstanceResponse>`)
@@ -117,6 +124,7 @@ var _ = Describe("Create Public IP", func() {
 			reqParams.ServerInstanceNo = "551236"
 			reqParams.PublicIPDescription = "public ip desc by SDK go"
 			reqParams.InternetLineTypeCode = "PUBLC"
+			reqParams.ZoneNo = "3"
 
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.CreatePublicIPInstance(reqParams)
@@ -130,6 +138,11 @@ var _ = Describe("Create Public IP", func() {
 			Expect(len(result.PublicIPInstanceList)).To(Equal(1))
 			Expect(publicIPInstance.PublicIP).To(Equal("192.168.120.117"))
 			Expect(publicIPInstance.PublicIPInstanceStatusName).To(Equal("using"))
+			Expect(publicIPInstance.Zone.ZoneNo).To(Equal("3"))
+			Expect(publicIPInstance.Zone.ZoneName).To(Equal("KR-2"))
+			Expect(publicIPInstance.Zone.ZoneCode).To(Equal("KR-2"))
+			Expect(publicIPInstance.Zone.ZoneDescription).To(Equal("평촌 zone"))
+			Expect(publicIPInstance.Zone.RegionNo).To(Equal("1"))
 		})
 	})
 
