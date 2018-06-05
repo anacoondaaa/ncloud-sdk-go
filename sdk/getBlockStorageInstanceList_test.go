@@ -50,6 +50,13 @@ var _ = Describe("Get Block Storage Instance List", func() {
 								<code>HDD</code>
 								<codeName>HDD</codeName>
 							</diskDetailType>
+							<zone>
+								<zoneNo>2</zoneNo>
+								<zoneName>KR-1</zoneName>
+								<zoneCode>KR-1</zoneCode>
+								<zoneDescription>가산 zone</zoneDescription>
+								<regionNo>1</regionNo>
+							</zone>
 						</blockStorageInstance>
 						<blockStorageInstance>
 							<blockStorageInstanceNo>559515</blockStorageInstanceNo>
@@ -82,6 +89,13 @@ var _ = Describe("Get Block Storage Instance List", func() {
 								<code>HDD</code>
 								<codeName>HDD</codeName>
 							</diskDetailType>
+							<zone>
+								<zoneNo>2</zoneNo>
+								<zoneName>KR-1</zoneName>
+								<zoneCode>KR-1</zoneCode>
+								<zoneDescription>가산 zone</zoneDescription>
+								<regionNo>1</regionNo>
+							</zone>
 						</blockStorageInstance>
 					</blockStorageInstanceList>
 				</getBlockStorageInstanceListResponse>`)
@@ -120,6 +134,11 @@ var _ = Describe("Get Block Storage Instance List", func() {
 			Expect(blockStorageInstance.DiskType.CodeName).To(Equal("Network Storage"))
 			Expect(blockStorageInstance.DiskDetailType.Code).To(Equal("HDD"))
 			Expect(blockStorageInstance.DiskDetailType.CodeName).To(Equal("HDD"))
+			Expect(blockStorageInstance.Zone.ZoneNo).To(Equal("2"))
+			Expect(blockStorageInstance.Zone.ZoneName).To(Equal("KR-1"))
+			Expect(blockStorageInstance.Zone.ZoneCode).To(Equal("KR-1"))
+			Expect(blockStorageInstance.Zone.ZoneDescription).To(Equal("가산 zone"))
+			Expect(blockStorageInstance.Zone.RegionNo).To(Equal("1"))
 
 			blockStorageInstance = result.BlockStorageInstance[1]
 			Expect(blockStorageInstance.BlockStorageInstanceNo).To(Equal("559515"))
@@ -142,6 +161,11 @@ var _ = Describe("Get Block Storage Instance List", func() {
 			Expect(blockStorageInstance.DiskType.CodeName).To(Equal("Network Storage"))
 			Expect(blockStorageInstance.DiskDetailType.Code).To(Equal("HDD"))
 			Expect(blockStorageInstance.DiskDetailType.CodeName).To(Equal("HDD"))
+			Expect(blockStorageInstance.Zone.ZoneNo).To(Equal("2"))
+			Expect(blockStorageInstance.Zone.ZoneName).To(Equal("KR-1"))
+			Expect(blockStorageInstance.Zone.ZoneCode).To(Equal("KR-1"))
+			Expect(blockStorageInstance.Zone.ZoneDescription).To(Equal("가산 zone"))
+			Expect(blockStorageInstance.Zone.RegionNo).To(Equal("1"))
 		})
 	})
 

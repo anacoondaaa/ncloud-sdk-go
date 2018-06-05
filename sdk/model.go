@@ -178,6 +178,7 @@ type RequestCreatePublicIPInstance struct {
 	PublicIPDescription  string
 	InternetLineTypeCode string
 	RegionNo             string
+	ZoneNo               string
 }
 
 type RequestAssociatePublicIP struct {
@@ -193,6 +194,7 @@ type RequestPublicIPInstanceList struct {
 	SearchFilterValue      string
 	InternetLineTypeCode   string
 	RegionNo               string
+	ZoneNo                 string
 	PageNo                 int
 	PageSize               int
 	SortedBy               string
@@ -216,6 +218,7 @@ type PublicIPInstance struct {
 	PublicIPInstanceOperation  common.CommonCode `xml:"publicIpInstanceOperation"`
 	PublicIPKindType           common.CommonCode `xml:"publicIpKindType"`
 	ServerInstance             ServerInstance    `xml:"serverInstanceAssociatedWithPublicIp"`
+	Zone                       common.Zone       `xml:"zone"`
 }
 
 type RequestDeletePublicIPInstances struct {
@@ -232,6 +235,7 @@ type RequestGetServerInstanceList struct {
 	ServerInstanceStatusCode           string
 	InternetLineTypeCode               string
 	RegionNo                           string
+	ZoneNo                             string
 	BaseBlockStorageDiskTypeCode       string
 	BaseBlockStorageDiskDetailTypeCode string
 	SortedBy                           string
@@ -252,6 +256,11 @@ type RequestTerminateServerInstances struct {
 
 type RequestRebootServerInstances struct {
 	ServerInstanceNoList []string
+}
+
+type RequestChangeServerInstanceSpec struct {
+	ServerInstanceNo  string
+	ServerProductCode string
 }
 
 // RequestGetRootPassword : Request to get root password of the server
@@ -306,6 +315,7 @@ type RequestBlockStorageInstanceList struct {
 	DiskTypeCode                   string
 	DiskDetailTypeCode             string
 	RegionNo                       string
+	ZoneNo                         string
 	SortedBy                       string
 	SortingOrder                   string
 }
@@ -332,6 +342,7 @@ type BlockStorageInstance struct {
 	BlockStorageInstanceDescription string            `xml:"blockStorageInstanceDescription"`
 	DiskType                        common.CommonCode `xml:"diskType"`
 	DiskDetailType                  common.CommonCode `xml:"diskDetailType"`
+	Zone                            common.Zone       `xml:"zone"`
 }
 
 // RequestGetServerProductList : Request to get server product list
@@ -415,4 +426,34 @@ type NasVolumeInstanceList struct {
 	common.CommonResponse
 	TotalRows             int                 `xml:"totalRows"`
 	NasVolumeInstanceList []NasVolumeInstance `xml:"nasVolumeInstanceList>nasVolumeInstance,omitempty"`
+}
+
+type PortForwardingRule struct {
+	ServerInstanceNo           string `xml:"serverInstanceNo"`
+	PortForwardingExternalPort string `xml:"portForwardingExternalPort"`
+	PortForwardingInternalPort string `xml:"portForwardingInternalPort"`
+}
+
+type RequestAddPortForwardingRules struct {
+	PortForwardingConfigurationNo string
+	PortForwardingRuleList        []PortForwardingRule
+}
+
+type RequestDeletePortForwardingRules struct {
+	PortForwardingConfigurationNo string
+	PortForwardingRuleList        []PortForwardingRule
+}
+
+type PortForwardingRuleList struct {
+	common.CommonResponse
+	PortForwardingConfigurationNo int                  `xml:"portForwardingConfigurationNo"`
+	PortForwardingPublicIp        string               `xml:"portForwardingPublicIp"`
+	TotalRows                     int                  `xml:"totalRows"`
+	PortForwardingRuleList        []PortForwardingRule `xml:"portForwardingRuleList>portForwardingRule,omitempty"`
+}
+
+type RequestPortForwardingRuleList struct {
+	InternetLineTypeCode string
+	RegionNo             string
+	ZoneNo               string
 }
