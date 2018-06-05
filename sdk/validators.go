@@ -35,7 +35,7 @@ func validateIntegerInRange(key string, value interface{}, min, max int) error {
 
 func validateMultipleValue(key string, value int, multiple int) error {
 	if int(value/multiple)*multiple != value {
-		return fmt.Errorf("%s must be a multiple of %d GB", key, multiple)
+		return fmt.Errorf("%s must be a multiple of %d", key, multiple)
 	}
 	return nil
 }
