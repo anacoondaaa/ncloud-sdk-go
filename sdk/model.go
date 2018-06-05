@@ -383,6 +383,51 @@ type AccessControlRule struct {
 	DestinationPort                        string            `xml:"destinationPort"`
 }
 
+type RequestNasCreateVolumeInstance struct {
+	VolumeName                      string
+	VolumeSize                      int
+	VolumeAllotmentProtocolTypeCode string
+	ServerInstanceNoList            []string
+	CustomIpList                    []string
+	CifsUserName                    string
+	CifsUserPassword                string
+	NasVolumeDescription            string
+	RegionNo                        string
+	ZoneNo                          string
+}
+
+type NasVolumeInstance struct {
+	NasVolumeInstanceNo              string            `xml:"nasVolumeInstanceNo"`
+	NasVolumeInstanceStatus          common.CommonCode `xml:"nasVolumeInstanceStatus"`
+	NasVolumeInstanceOperation       common.CommonCode `xml:"nasVolumeInstanceOperation"`
+	NasVolumeInstanceStatusName      string            `xml:"nasVolumeInstanceStatusName"`
+	CreateDate                       string            `xml:"createDate"`
+	NasVolumeInstanceDescription     string            `xml:"nasVolumeInstanceDescription"`
+	MountInformation                 string            `xml:"mountInformation"`
+	VolumeAllotmentProtocolType      common.CommonCode `xml:"volumeAllotmentProtocolType"`
+	VolumeName                       string            `xml:"volumeName"`
+	VolumeTotalSize                  int               `xml:"volumeTotalSize"`
+	VolumeSize                       int               `xml:"volumeSize"`
+	VolumeUseSize                    int               `xml:"volumeUseSize"`
+	VolumeUseRatio                   float32           `xml:"volumeUseRatio"`
+	SnapshotVolumeConfigurationRatio float32           `xml:"snapshotVolumeConfigurationRatio"`
+	SnapshotVolumeSize               int               `xml:"snapshotVolumeSize"`
+	SnapshotVolumeUseSize            int               `xml:"snapshotVolumeUseSize"`
+	SnapshotVolumeUseRatio           float32           `xml:"snapshotVolumeUseRatio"`
+	IsSnapshotConfiguration          bool              `xml:"isSnapshotConfiguration"`
+	IsEventConfiguration             bool              `xml:"isEventConfiguration"`
+	Zone                             common.Zone       `xml:"zone"`
+	Region                           common.Region     `xml:"region"`
+	NasVolumeInstanceCustomIpList    []string          `xml:"nasVolumeInstanceCustomIpList"`
+	NasVolumeServerInstanceList      []string          `xml:"nasVolumeServerInstanceList"`
+}
+
+type NasVolumeInstanceList struct {
+	common.CommonResponse
+	TotalRows             int                 `xml:"totalRows"`
+	NasVolumeInstanceList []NasVolumeInstance `xml:"nasVolumeInstanceList>nasVolumeInstance,omitempty"`
+}
+
 type PortForwardingRule struct {
 	ServerInstanceNo           string `xml:"serverInstanceNo"`
 	PortForwardingExternalPort string `xml:"portForwardingExternalPort"`
