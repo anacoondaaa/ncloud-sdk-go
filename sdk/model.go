@@ -371,3 +371,33 @@ type AccessControlRule struct {
 	SourceIP                               string            `xml:"sourceIp"`
 	DestinationPort                        string            `xml:"destinationPort"`
 }
+
+type PortForwardingRule struct {
+	ServerInstanceNo           string `xml:"serverInstanceNo"`
+	PortForwardingExternalPort string `xml:"portForwardingExternalPort"`
+	PortForwardingInternalPort string `xml:"portForwardingInternalPort"`
+}
+
+type RequestAddPortForwardingRules struct {
+	PortForwardingConfigurationNo string
+	PortForwardingRuleList        []PortForwardingRule
+}
+
+type RequestDeletePortForwardingRules struct {
+	PortForwardingConfigurationNo string
+	PortForwardingRuleList        []PortForwardingRule
+}
+
+type PortForwardingRuleList struct {
+	common.CommonResponse
+	PortForwardingConfigurationNo int                  `xml:"portForwardingConfigurationNo"`
+	PortForwardingPublicIp        string               `xml:"portForwardingPublicIp"`
+	TotalRows                     int                  `xml:"totalRows"`
+	PortForwardingRuleList        []PortForwardingRule `xml:"portForwardingRuleList>portForwardingRule,omitempty"`
+}
+
+type RequestPortForwardingRuleList struct {
+	InternetLineTypeCode string
+	RegionNo             string
+	ZoneNo               string
+}
