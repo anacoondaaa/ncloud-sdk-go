@@ -93,7 +93,7 @@ type RequestCreateServerInstance struct {
 	ServerName                            string
 	ServerDescription                     string
 	LoginKeyName                          string
-	IsProtectServerTermination            bool
+	IsProtectServerTermination            string
 	ServerCreateCount                     int
 	ServerCreateStartNo                   int
 	InternetLineTypeCode                  string
@@ -187,7 +187,7 @@ type RequestAssociatePublicIP struct {
 }
 
 type RequestPublicIPInstanceList struct {
-	IsAssociated           bool
+	IsAssociated           string
 	PublicIPInstanceNoList []string
 	PublicIPList           []string
 	SearchFilterName       string
@@ -355,7 +355,7 @@ type RequestGetServerProductList struct {
 
 type RequestAccessControlGroupList struct {
 	AccessControlGroupConfigurationNoList []string
-	IsDefault                             bool
+	IsDefault                             string
 	AccessControlGroupName                string
 	PageNo                                int
 	PageSize                              int

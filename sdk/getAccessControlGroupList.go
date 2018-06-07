@@ -23,8 +23,11 @@ func processGetAccessControlGroupListParams(reqParams *RequestAccessControlGroup
 		}
 	}
 
-	if reqParams.IsDefault {
-		params["isDefault"] = "true"
+	if reqParams.IsDefault != "" {
+		if err := validateBoolValue("IsDefault", reqParams.IsDefault); err != nil {
+			return nil, err
+		}
+		params["isDefault"] = reqParams.IsDefault
 	}
 
 	if reqParams.AccessControlGroupName != "" {

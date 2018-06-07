@@ -57,8 +57,11 @@ func processCreateServerInstancesParams(reqParams *RequestCreateServerInstance) 
 		params["loginKeyName"] = reqParams.LoginKeyName
 	}
 
-	if reqParams.IsProtectServerTermination == true {
-		params["isProtectServerTermination"] = "true"
+	if reqParams.IsProtectServerTermination != "" {
+		if err := validateBoolValue("IsProtectServerTermination", reqParams.IsProtectServerTermination); err != nil {
+			return nil, err
+		}
+		params["IsProtectServerTermination"] = reqParams.IsProtectServerTermination
 	}
 
 	if reqParams.ServerCreateCount > 0 {
