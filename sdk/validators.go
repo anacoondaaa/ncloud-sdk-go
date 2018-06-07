@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+var BOOL_VALUE_STRINGS = []string{"true", "false"}
+
 func validateRequiredField(key string, value interface{}) error {
 	switch v := value.(type) {
 	case string:
@@ -56,6 +58,15 @@ func validateIncludeValuesIgnoreCase(key string, value string, includeValues []s
 		}
 	}
 	return fmt.Errorf("%s should be %s", key, strings.Join(includeValues, " or "))
+}
+
+func validateBoolValue(key string, value string) error {
+	for _, included := range BOOL_VALUE_STRINGS {
+		if value == included {
+			return nil
+		}
+	}
+	return fmt.Errorf("%s should be %s", key, strings.Join(BOOL_VALUE_STRINGS, " or "))
 }
 
 func validateStringMaxLen(key string, value interface{}, max int) error {

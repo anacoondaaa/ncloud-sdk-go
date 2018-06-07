@@ -429,6 +429,15 @@ type NasVolumeInstanceList struct {
 	NasVolumeInstanceList []NasVolumeInstance `xml:"nasVolumeInstanceList>nasVolumeInstance,omitempty"`
 }
 
+type RequestGetNasVolumeInstanceList struct {
+	VolumeAllotmentProtocolTypeCode string
+	IsEventConfiguration            string
+	IsSnapshotConfiguration         string
+	NasVolumeInstanceNoList         []string
+	RegionNo                        string
+	ZoneNo                          string
+}
+
 type PortForwardingRule struct {
 	ServerInstanceNo           string `xml:"serverInstanceNo"`
 	PortForwardingExternalPort string `xml:"portForwardingExternalPort"`
