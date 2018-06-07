@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Create Login Key", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<createLoginKeyResponse>
+				Reply(http.statusOK).BodyString(`<createLoginKeyResponse>
 					<requestId>ca6f393c-8a90-4023-ac40-93bcf77dd653</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -41,7 +43,7 @@ var _ = Describe("Create Login Key", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10405</returnCode>
 					<returnMessage>The key name already exists.</returnMessage>
 					</responseError>`)

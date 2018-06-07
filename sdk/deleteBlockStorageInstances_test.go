@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Delete Block Storage Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<deleteBlockStorageInstancesResponse>
+				Reply(http.statusOK).BodyString(`<deleteBlockStorageInstancesResponse>
 					<requestId>4d8f4e3e-e8da-42f8-87ad-21986e96fdae</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -96,7 +98,7 @@ var _ = Describe("Delete Block Storage Instances", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
 					Get("/server").
-					Reply(400).BodyString(`<responseError>
+					Reply(http.StatusBadRequest).BodyString(`<responseError>
 						<returnCode>24121</returnCode>
 						<returnMessage>The input parameter storage instance number is invalid. </returnMessage>
 					</responseError>`)

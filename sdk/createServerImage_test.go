@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Create Server Image", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<createMemberServerImageResponse>
+				Reply(http.statusOK).BodyString(`<createMemberServerImageResponse>
 					<requestId>148e5d84-1e01-411b-812f-f092c959da3a</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -97,7 +99,7 @@ var _ = Describe("Create Server Image", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>25018</returnCode>
 					<returnMessage>Operation is currently unavailable since (other) user is either operating server or creating server image of the server. </returnMessage>
 				</responseError>`)
@@ -125,7 +127,7 @@ var _ = Describe("Create Server Image", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>25008</returnCode>
 					<returnMessage>Unable to create server image since server is either not in suspended status or in operation.</returnMessage>
 				</responseError>`)
@@ -153,7 +155,7 @@ var _ = Describe("Create Server Image", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10300</returnCode>
 					<returnMessage>Instance name is already in use. please use other name.</returnMessage>
 				</responseError>`)

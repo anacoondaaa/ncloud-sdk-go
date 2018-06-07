@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Create Block Storage Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<createBlockStorageInstanceResponse>
+				Reply(http.statusOK).BodyString(`<createBlockStorageInstanceResponse>
 					<requestId>4920c659-d272-4357-b632-fc3a25fa80b2</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -102,7 +104,7 @@ var _ = Describe("Create Block Storage Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<createBlockStorageInstanceResponse>
+				Reply(http.statusOK).BodyString(`<createBlockStorageInstanceResponse>
 					<requestId>09f550a7-1af8-46b1-a435-a5e23e4f2d3c</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -199,7 +201,7 @@ var _ = Describe("Create Block Storage Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<createBlockStorageInstanceResponse>
+				Reply(http.statusOK).BodyString(`<createBlockStorageInstanceResponse>
 					<requestId>dbb5590c-e460-4e9c-9b20-7b08df4f91ad</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -291,7 +293,7 @@ var _ = Describe("Create Block Storage Instance", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
 					Get("/server").
-					Reply(500).BodyString(`<responseError>
+					Reply(http.StatusInternalServerError).BodyString(`<responseError>
 						<returnCode>1300</returnCode>
 						<returnMessage>Please try your call again later.
 					Temporarily out of service.
@@ -339,7 +341,7 @@ var _ = Describe("Create Block Storage Instance", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
 					Get("/server").
-					Reply(400).BodyString(`<responseError>
+					Reply(http.StatusBadRequest).BodyString(`<responseError>
 						<returnCode>10300</returnCode>
 						<returnMessage>Instance name is already in use. please use other name.</returnMessage>
 					</responseError>`)

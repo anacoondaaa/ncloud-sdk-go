@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Get Access Control Rule List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getAccessControlRuleListResponse>
+				Reply(http.statusOK).BodyString(`<getAccessControlRuleListResponse>
 					<requestId>ca53a246-3af4-4d25-9327-7cde849cbabf</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -120,7 +122,7 @@ var _ = Describe("Get Access Control Rule List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>24076</returnCode>
 					<returnMessage>It is ACG(access control group) you do not own. Serial number - 49645</returnMessage>
 				</responseError>`)

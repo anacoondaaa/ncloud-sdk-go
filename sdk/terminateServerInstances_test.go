@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Terminate Server Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<terminateServerInstancesResponse>
+				Reply(http.statusOK).BodyString(`<terminateServerInstancesResponse>
 					<requestId>8c5572d4-8895-4fad-afca-2a2762fb8b70</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -109,7 +111,7 @@ var _ = Describe("Terminate Server Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10713</returnCode>
 					<returnMessage>Not found contract information. Please check your input parameter.</returnMessage>
 				</responseError>`)
@@ -134,7 +136,7 @@ var _ = Describe("Terminate Server Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>25022</returnCode>
 					<returnMessage>Unable to return the server since (other) user is either operating target server or an error in the target server. Please confirm the status of server/ storage.</returnMessage>
 				</responseError>`)

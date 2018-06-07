@@ -13,7 +13,7 @@ var _ = Describe("Get Server Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerInstanceListResponse>
+				Reply(http.statusOK).BodyString(`<getServerInstanceListResponse>
 					<requestId>f8342548-b510-436e-87c0-c0cd63c14fcd</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -339,7 +339,7 @@ var _ = Describe("Get Server Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerInstanceListResponse>
+				Reply(http.statusOK).BodyString(`<getServerInstanceListResponse>
 					<requestId>8df5a02f-9d58-489d-9653-65dae4a2a84c</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -454,7 +454,7 @@ var _ = Describe("Get Server Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerInstanceListResponse>
+				Reply(http.statusOK).BodyString(`<getServerInstanceListResponse>
 					<requestId>7683adc5-e057-4b7c-aeec-ad20171893fd</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -484,7 +484,7 @@ var _ = Describe("Get Server Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(401).BodyString(`<responseError>
+				Reply(http.StatusUnauthorized)01).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Expired url.</returnMessage>
 					</responseError>`)

@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Delete Login Key", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<deleteLoginKeyResponse>
+				Reply(http.statusOK).BodyString(`<deleteLoginKeyResponse>
 					<requestId>aec19696-46c3-4841-967b-ce5399d151cf</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -37,7 +39,7 @@ var _ = Describe("Delete Login Key", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10406</returnCode>
 					<returnMessage>The authentication key does not exist.</returnMessage>
 					</responseError>`)

@@ -13,7 +13,7 @@ var _ = Describe("Get Access Control Group List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getAccessControlGroupListResponse>
+				Reply(http.statusOK).BodyString(`<getAccessControlGroupListResponse>
 					<requestId>4c50ff5c-81d5-4073-a581-12a47d4ff714</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -69,7 +69,7 @@ var _ = Describe("Get Access Control Group List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getAccessControlGroupListResponse>
+				Reply(http.statusOK).BodyString(`<getAccessControlGroupListResponse>
 					<requestId>509dac74-d836-4b4d-a420-01c0d99e3146</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -113,7 +113,7 @@ var _ = Describe("Get Access Control Group List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getAccessControlGroupListResponse>
+				Reply(http.statusOK).BodyString(`<getAccessControlGroupListResponse>
 					<requestId>b14395d6-5e72-4e0e-9f54-94d6802f588b</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

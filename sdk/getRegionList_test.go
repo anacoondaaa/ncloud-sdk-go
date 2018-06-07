@@ -13,7 +13,7 @@ var _ = Describe("GetRegionList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getRegionListResponse>
+				Reply(http.statusOK).BodyString(`<getRegionListResponse>
 					<requestId>8d548f30-daac-4599-a9c0-e5bb4a3061cc</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

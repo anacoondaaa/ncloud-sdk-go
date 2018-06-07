@@ -13,7 +13,7 @@ var _ = Describe("MemberServerImagesList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getMemberServerImageListResponse>
+				Reply(http.statusOK).BodyString(`<getMemberServerImageListResponse>
 					<requestId>ceff19a9-dd17-4c95-89c7-21b617b20628</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -136,7 +136,7 @@ var _ = Describe("MemberServerImagesList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getMemberServerImageListResponse>
+				Reply(http.statusOK).BodyString(`<getMemberServerImageListResponse>
 					<requestId>b65188cf-4cfb-46c4-ab39-2e41107c5e2b</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -220,7 +220,7 @@ var _ = Describe("MemberServerImagesList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getMemberServerImageListResponse>
+				Reply(http.statusOK).BodyString(`<getMemberServerImageListResponse>
 					<requestId>97484034-36a6-4ec6-abd4-cfc987890149</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -247,7 +247,7 @@ var _ = Describe("MemberServerImagesList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(401).BodyString(`<responseError>
+				Reply(http.StatusUnauthorized)01).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Expired url.</returnMessage>
 					</responseError>`)

@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Delete Public IP Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<deletePublicIpInstancesResponse>
+				Reply(http.statusOK).BodyString(`<deletePublicIpInstancesResponse>
 					<requestId>f6c7908e-936c-42ad-9e3b-73e4b0765f59</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -73,7 +75,7 @@ var _ = Describe("Delete Public IP Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10713</returnCode>
 					<returnMessage>
 					Not found contract information. Please check your input parameter.
@@ -100,7 +102,7 @@ var _ = Describe("Delete Public IP Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>24073</returnCode>
 					<returnMessage>
 					Unable to destroy the server since a public IP is associated with the server. First, please disassociate a public IP from the server. publicIpInstanceNo = 322396

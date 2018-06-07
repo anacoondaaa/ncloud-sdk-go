@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Create Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<createServerInstancesResponse>
+				Reply(http.statusOK).BodyString(`<createServerInstancesResponse>
 					<requestId>eb22dc06-ff48-4d05-933d-22ca85102508</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -168,7 +170,7 @@ var _ = Describe("Create Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<createServerInstancesResponse>
+				Reply(http.statusOK).BodyString(`<createServerInstancesResponse>
 					<requestId>77868086-533e-4b31-8722-b6e84dfdcddd</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -264,7 +266,7 @@ var _ = Describe("Create Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(401).BodyString(`<responseError>
+				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Invalid consumerKey</returnMessage>
 					</responseError>`)
@@ -289,7 +291,7 @@ var _ = Describe("Create Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>900</returnCode>
 					<returnMessage>Required field is not specified. location : serverImageProductCode or memberServerImageNo.</returnMessage>
 				</responseError>`)
@@ -311,7 +313,7 @@ var _ = Describe("Create Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10102</returnCode>
 					<returnMessage>
 					Unable to create server anymore since creation limitation setting has been exceeded. Creation limitation: 100 Created : 102

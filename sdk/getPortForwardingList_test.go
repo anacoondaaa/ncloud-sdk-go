@@ -13,7 +13,7 @@ var _ = Describe("Get Port Forwarding List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getPortForwardingRuleListResponse>
+				Reply(http.statusOK).BodyString(`<getPortForwardingRuleListResponse>
     <requestId>08842664-ea53-49b5-9192-7e4d165b86d6</requestId>
     <returnCode>0</returnCode>
     <returnMessage>success</returnMessage>
@@ -165,7 +165,7 @@ var _ = Describe("Get Port Forwarding List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getPortForwardingRuleListResponse>
+				Reply(http.statusOK).BodyString(`<getPortForwardingRuleListResponse>
 				<requestId>08842664-ea53-49b5-9192-7e4d165b86d6</requestId>
 				<returnCode>0</returnCode>
 			    <returnMessage>success</returnMessage>
