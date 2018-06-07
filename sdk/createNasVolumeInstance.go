@@ -7,6 +7,7 @@ import (
 
 	"github.com/NaverCloudPlatform/ncloud-sdk-go/common"
 	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
+	"strconv"
 )
 
 func processCreateNasVolumeInstance(reqParams *RequestCreateNasVolumeInstance) (map[string]string, error) {
@@ -24,7 +25,7 @@ func processCreateNasVolumeInstance(reqParams *RequestCreateNasVolumeInstance) (
 	if err := validateMultipleValue("VolumeSize", reqParams.VolumeSize, 100); err != nil {
 		return nil, err
 	}
-	params["volumeSize"] = string(reqParams.VolumeSize)
+	params["volumeSize"] = strconv.Itoa(reqParams.VolumeSize)
 
 	if err := validateIncludeValues("VolumeAllotmentProtocolTypeCode", reqParams.VolumeAllotmentProtocolTypeCode, []string{"NFS", "CIFS"}); err != nil {
 		return nil, err
