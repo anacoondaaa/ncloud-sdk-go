@@ -15,7 +15,7 @@ var _ = Describe("Delete Block Storage Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<deleteBlockStorageInstancesResponse>
+				Reply(http.StatusOK).BodyString(`<deleteBlockStorageInstancesResponse>
 					<requestId>4d8f4e3e-e8da-42f8-87ad-21986e96fdae</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

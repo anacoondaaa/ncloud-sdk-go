@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Get Port Forwarding List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getPortForwardingRuleListResponse>
+				Reply(http.StatusOK).BodyString(`<getPortForwardingRuleListResponse>
     <requestId>08842664-ea53-49b5-9192-7e4d165b86d6</requestId>
     <returnCode>0</returnCode>
     <returnMessage>success</returnMessage>
@@ -165,7 +167,7 @@ var _ = Describe("Get Port Forwarding List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getPortForwardingRuleListResponse>
+				Reply(http.StatusOK).BodyString(`<getPortForwardingRuleListResponse>
 				<requestId>08842664-ea53-49b5-9192-7e4d165b86d6</requestId>
 				<returnCode>0</returnCode>
 			    <returnMessage>success</returnMessage>

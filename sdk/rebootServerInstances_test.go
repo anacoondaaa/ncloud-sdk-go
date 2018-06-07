@@ -15,7 +15,7 @@ var _ = Describe("Reboot Server Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<rebootServerInstancesResponse>
+				Reply(http.StatusOK).BodyString(`<rebootServerInstancesResponse>
 					<requestId>3c8797b6-f48c-4c1e-bb7f-d323f187bf14</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

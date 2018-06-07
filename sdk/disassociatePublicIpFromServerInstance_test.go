@@ -15,7 +15,7 @@ var _ = Describe("Disassociate Public IP From Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<disassociatePublicIpFromServerInstanceResponse>
+				Reply(http.StatusOK).BodyString(`<disassociatePublicIpFromServerInstanceResponse>
 					<requestId>bd83cf83-0361-4c74-aa2e-3e5243a58f1d</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

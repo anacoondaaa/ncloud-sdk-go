@@ -15,7 +15,7 @@ var _ = Describe("Create Server Image", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<createMemberServerImageResponse>
+				Reply(http.StatusOK).BodyString(`<createMemberServerImageResponse>
 					<requestId>148e5d84-1e01-411b-812f-f092c959da3a</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

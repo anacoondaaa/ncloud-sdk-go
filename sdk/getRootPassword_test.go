@@ -14,7 +14,7 @@ var _ = Describe("Get Root Password", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getRootPasswordResponse>
+				Reply(http.StatusOK).BodyString(`<getRootPasswordResponse>
 							<requestId>074fa0db-a289-4272-8ed5-9f94a0ae5173</requestId>
 		  					<returnCode>0</returnCode>
 							<returnMessage>success</returnMessage>

@@ -15,7 +15,7 @@ var _ = Describe("Delete Login Key", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<deleteLoginKeyResponse>
+				Reply(http.StatusOK).BodyString(`<deleteLoginKeyResponse>
 					<requestId>aec19696-46c3-4841-967b-ce5399d151cf</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

@@ -15,7 +15,7 @@ var _ = Describe("Create Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<createServerInstancesResponse>
+				Reply(http.StatusOK).BodyString(`<createServerInstancesResponse>
 					<requestId>eb22dc06-ff48-4d05-933d-22ca85102508</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -170,7 +170,7 @@ var _ = Describe("Create Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<createServerInstancesResponse>
+				Reply(http.StatusOK).BodyString(`<createServerInstancesResponse>
 					<requestId>77868086-533e-4b31-8722-b6e84dfdcddd</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

@@ -15,7 +15,7 @@ var _ = Describe("Get Access Control Rule List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getAccessControlRuleListResponse>
+				Reply(http.StatusOK).BodyString(`<getAccessControlRuleListResponse>
 					<requestId>ca53a246-3af4-4d25-9327-7cde849cbabf</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

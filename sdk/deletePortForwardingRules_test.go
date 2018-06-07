@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Delete Port Forwarding Rules", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<deletePortForwardingRulesResponse>
+				Reply(http.StatusOK).BodyString(`<deletePortForwardingRulesResponse>
     <requestId>54b32354-3acb-489c-8bdb-09a722555a75</requestId>
     <returnCode>0</returnCode>
     <returnMessage>success</returnMessage>

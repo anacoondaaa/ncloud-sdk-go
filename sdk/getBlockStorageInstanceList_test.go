@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Get Block Storage Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getBlockStorageInstanceListResponse>
+				Reply(http.StatusOK).BodyString(`<getBlockStorageInstanceListResponse>
 					<requestId>79e97c32-5cd2-472d-8074-d92edd3a9c99</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -173,7 +175,7 @@ var _ = Describe("Get Block Storage Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getBlockStorageInstanceListResponse>
+				Reply(http.StatusOK).BodyString(`<getBlockStorageInstanceListResponse>
 					<requestId>f5a87a5d-4fbb-4f57-8ec7-3b1543ed3167</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -258,7 +260,7 @@ var _ = Describe("Get Block Storage Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getBlockStorageInstanceListResponse>
+				Reply(http.StatusOK).BodyString(`<getBlockStorageInstanceListResponse>
 					<requestId>4500fb43-d21e-4db8-a89f-2ca44cb20f91</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -287,7 +289,7 @@ var _ = Describe("Get Block Storage Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.StatusUnauthorized)01).BodyString(`<responseError>
+				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Expired url.</returnMessage>
 					</responseError>`)

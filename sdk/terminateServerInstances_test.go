@@ -15,7 +15,7 @@ var _ = Describe("Terminate Server Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<terminateServerInstancesResponse>
+				Reply(http.StatusOK).BodyString(`<terminateServerInstancesResponse>
 					<requestId>8c5572d4-8895-4fad-afca-2a2762fb8b70</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

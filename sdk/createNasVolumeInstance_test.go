@@ -15,7 +15,7 @@ var _ = Describe("Create NAS Volume Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<createNasVolumeInstanceResponse>
+				Reply(http.StatusOK).BodyString(`<createNasVolumeInstanceResponse>
     <requestId>58574752-49cb-411f-8710-e0fc6c28b8a7</requestId>
     <returnCode>0</returnCode>
     <returnMessage>success</returnMessage>

@@ -15,7 +15,7 @@ var _ = Describe("Delete Public IP Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<deletePublicIpInstancesResponse>
+				Reply(http.StatusOK).BodyString(`<deletePublicIpInstancesResponse>
 					<requestId>f6c7908e-936c-42ad-9e3b-73e4b0765f59</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

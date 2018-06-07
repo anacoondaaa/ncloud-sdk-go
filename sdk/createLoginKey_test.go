@@ -15,7 +15,7 @@ var _ = Describe("Create Login Key", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<createLoginKeyResponse>
+				Reply(http.StatusOK).BodyString(`<createLoginKeyResponse>
 					<requestId>ca6f393c-8a90-4023-ac40-93bcf77dd653</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

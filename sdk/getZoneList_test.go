@@ -14,7 +14,7 @@ var _ = Describe("Get Zone List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(http.statusOK).BodyString(`<getZoneListResponse>
+				Reply(http.StatusOK).BodyString(`<getZoneListResponse>
 					<requestId>f650ca08-937c-49e5-9a33-aaa4e1d3412a</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
