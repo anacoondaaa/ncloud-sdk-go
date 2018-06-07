@@ -7,7 +7,7 @@ import (
 	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
 )
 
-func processCreateNasVolumeInstance(reqParams *RequestNasCreateVolumeInstance) (map[string]string, error) {
+func processCreateNasVolumeInstance(reqParams *RequestCreateNasVolumeInstance) (map[string]string, error) {
 	params := make(map[string]string)
 
 	if err := validateRequiredField("VolumeName", reqParams.VolumeName); err != nil {
@@ -67,7 +67,7 @@ func processCreateNasVolumeInstance(reqParams *RequestNasCreateVolumeInstance) (
 	return params, nil
 }
 
-func (s *Conn) CreateNasVolumeInstance(reqParams *RequestNasCreateVolumeInstance) (*NasVolumeInstanceList, error) {
+func (s *Conn) CreateNasVolumeInstance(reqParams *RequestCreateNasVolumeInstance) (*NasVolumeInstanceList, error) {
 
 	params, err := processCreateNasVolumeInstance(reqParams)
 	if err != nil {
