@@ -19,7 +19,7 @@ func processGetLoadBalancerInstanceListParams(reqParams *RequestLoadBalancerInst
 
 	if len(reqParams.LoadBalancerInstanceNoList) > 0 {
 		for k, v := range reqParams.LoadBalancerInstanceNoList {
-			params[fmt.Sprintf("LoadBalancerInstanceNoList.%d", k+1)] = v
+			params[fmt.Sprintf("loadBalancerInstanceNoList.%d", k+1)] = v
 		}
 	}
 
