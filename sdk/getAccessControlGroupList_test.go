@@ -92,7 +92,7 @@ var _ = Describe("Get Access Control Group List", func() {
 		})
 		It("should get One Acess Control Group", func() {
 			reqParams := new(RequestAccessControlGroupList)
-			reqParams.IsDefault = true
+			reqParams.IsDefault = "true"
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.GetAccessControlGroupList(reqParams)
 

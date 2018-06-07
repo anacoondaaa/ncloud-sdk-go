@@ -19,8 +19,11 @@ func processGetPublicIPInstanceListParams(reqParams *RequestPublicIPInstanceList
 		return params, nil
 	}
 
-	if reqParams.IsAssociated {
-		params["isAssociated"] = "true"
+	if reqParams.IsAssociated != "" {
+		if err := validateBoolValue("IsAssociated", reqParams.IsAssociated); err != nil {
+			return nil, err
+		}
+		params["IsAssociated"] = reqParams.IsAssociated
 	}
 
 	if len(reqParams.PublicIPInstanceNoList) > 0 {
