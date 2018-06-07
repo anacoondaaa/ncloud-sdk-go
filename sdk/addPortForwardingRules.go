@@ -4,6 +4,8 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"net/http"
+
 	"github.com/NaverCloudPlatform/ncloud-sdk-go/common"
 	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
 )
@@ -40,7 +42,7 @@ func (s *Conn) AddPortForwardingRules(reqParams *RequestAddPortForwardingRules) 
 		return nil, err
 	}
 
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		responseError, err := common.ParseErrorResponse(bytes)
 		if err != nil {
 			return nil, err
