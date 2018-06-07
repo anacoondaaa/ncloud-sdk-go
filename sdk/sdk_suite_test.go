@@ -36,6 +36,6 @@ func TestSDK(t *testing.T) {
 }
 
 var _ = BeforeSuite(func() {
-	accessKey = "T4tcoGqU4eQ8vItfNBHK"
-	secretKey = "hFVBgseGOGjxmYVupJV36qG3DaXpyj74S1BGAr6C"
+	accessKey = "YZ8WMQ0Mo2D7Sy3HgcFj"
+	secretKey = "pYN0Lld36TipU6FbJ05TQO76nVqaDXPnvm5Q4ZnE"
 })

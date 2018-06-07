@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("ServerProductList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerProductListResponse>
+				Reply(http.StatusOK).BodyString(`<getServerProductListResponse>
 					<requestId>0e790dc1-f636-4791-922b-a11c9ad79de2</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -1068,7 +1070,7 @@ var _ = Describe("ServerProductList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerProductListResponse>
+				Reply(http.StatusOK).BodyString(`<getServerProductListResponse>
 					<requestId>ed5b199a-3f02-42f4-9b0e-4e3ab202cb10</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -1183,7 +1185,7 @@ var _ = Describe("ServerProductList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerProductListResponse>
+				Reply(http.StatusOK).BodyString(`<getServerProductListResponse>
 					<requestId>bade0f6c-0bc2-40d9-af49-5fdced57ddb4</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -1272,7 +1274,7 @@ var _ = Describe("ServerProductList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerProductListResponse>
+				Reply(http.StatusOK).BodyString(`<getServerProductListResponse>
 					<requestId>79cdf702-de73-45ed-9b87-b2052acb0947</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

@@ -4,11 +4,12 @@ sudo: required
 
 go:
   - 1.9.x
+  - 1.10.x
   - master
 
 install: true
 
-script: 
+script:
   - make deps
   - go test -v ./...
   - make build

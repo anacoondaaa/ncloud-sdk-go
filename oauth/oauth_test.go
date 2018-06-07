@@ -14,7 +14,7 @@ var _ = Describe("Oauth", func() {
 	BeforeEach(func() {
 		gock.New("https://api.ncloud.com").
 			Get("/server").
-			Reply(200)
+			Reply(http.StatusOK)
 	})
 	AfterEach(func() {
 		gock.Off()

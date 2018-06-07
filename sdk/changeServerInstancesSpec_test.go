@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Change Server Instance Spec", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<changeServerInstanceSpecResponse>
+				Reply(http.StatusOK).BodyString(`<changeServerInstanceSpecResponse>
 					<requestId>3c8797b6-f48c-4c1e-bb7f-d323f187bf14</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -111,7 +113,7 @@ var _ = Describe("Change Server Instance Spec", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>24120</returnCode>
 					<returnMessage>The input parameter server instance number is invalid. </returnMessage>
 				</responseError>`)
@@ -138,7 +140,7 @@ var _ = Describe("Change Server Instance Spec", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10712</returnCode>
   					<returnMessage>Not found product. Please check your input product.  </returnMessage>
 				</responseError>`)
@@ -165,7 +167,7 @@ var _ = Describe("Change Server Instance Spec", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
   					<returnCode>10503</returnCode>
   					<returnMessage>You may not change to spec of same level.</returnMessage>
 				</responseError>`)

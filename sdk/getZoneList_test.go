@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -12,7 +14,7 @@ var _ = Describe("Get Zone List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getZoneListResponse>
+				Reply(http.StatusOK).BodyString(`<getZoneListResponse>
 					<requestId>f650ca08-937c-49e5-9a33-aaa4e1d3412a</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -50,7 +52,7 @@ var _ = Describe("Get Zone List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>1300</returnCode>
 					<returnMessage>Please try your call again later.
 				Temporarily out of service.

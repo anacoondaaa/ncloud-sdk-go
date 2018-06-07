@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Get Public IP Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getPublicIpInstanceListResponse>
+				Reply(http.StatusOK).BodyString(`<getPublicIpInstanceListResponse>
 					<requestId>66fe1605-a8d8-4d96-a19b-357169205c93</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -90,7 +92,7 @@ var _ = Describe("Get Public IP Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getPublicIpInstanceListResponse>
+				Reply(http.StatusOK).BodyString(`<getPublicIpInstanceListResponse>
 					<requestId>3c0668ae-6c6d-4b60-9bb5-874204f81802</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -214,7 +216,7 @@ var _ = Describe("Get Public IP Instance List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getPublicIpInstanceListResponse>
+				Reply(http.StatusOK).BodyString(`<getPublicIpInstanceListResponse>
 					<requestId>f7791c1d-941f-4968-bc24-a7224e16d39f</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

@@ -138,6 +138,7 @@ type ServerInstance struct {
 	BaseBlockStorageDiskType       common.CommonCode    `xml:"baseBlockStorageDiskType"`
 	BaseBlockStroageDiskDetailType common.CommonCode    `xml:"baseBlockStroageDiskDetailType"`
 	InternetLineType               common.CommonCode    `xml:"internetLineType"`
+	ServerInstanceType             common.CommonCode    `xml:"serverInstanceType"`
 	UserData                       string               `xml:"userData"`
 	AccessControlGroupList         []AccessControlGroup `xml:"accessControlGroupList>accessControlGroup"`
 }
@@ -465,4 +466,66 @@ type RequestPortForwardingRuleList struct {
 	InternetLineTypeCode string
 	RegionNo             string
 	ZoneNo               string
+}
+
+// RequestLoadBalancerInstanceList is request type to get load balancer instance list
+type RequestLoadBalancerInstanceList struct {
+	LoadBalancerInstanceNoList []string
+	InternetLineTypeCode       string
+	NetworkUsageTypeCode       string
+	RegionNo                   string
+	PageNo                     int
+	PageSize                   int
+	SortedBy                   string
+	SortingOrder               string
+}
+
+// LoadBalancerInstanceList is response type to return load balancer instance list
+type LoadBalancerInstanceList struct {
+	common.CommonResponse
+	LoadBalancerInstanceList []LoadBalancerInstance `xml:"loadBalancerInstanceList>loadBalancerInstance,omitempty"`
+	TotalRows                int                    `xml:"totalRows"`
+}
+
+type LoadBalancerInstance struct {
+	LoadBalancerInstanceNo         string                       `xml:"loadBalancerInstanceNo"`
+	VirtualIP                      string                       `xml:"virtualIp"`
+	LoadBalancerName               string                       `xml:"loadBalancerName"`
+	LoadBalancerAlgorithmType      common.CommonCode            `xml:"loadBalancerAlgorithmType"`
+	LoadBalancerDescription        string                       `xml:"loadBalancerDescription"`
+	CreateDate                     string                       `xml:"createDate"`
+	DomainName                     string                       `xml:"domainName"`
+	InternetLineType               common.CommonCode            `xml:"internetLineType"`
+	LoadBalancerInstanceStatusName string                       `xml:"loadBalancerInstanceStatusName"`
+	LoadBalancerInstanceStatus     common.CommonCode            `xml:"loadBalancerInstanceStatus"`
+	LoadBalancerInstanceOperation  common.CommonCode            `xml:"loadBalancerInstanceOperation"`
+	NetworkUsageType               common.CommonCode            `xml:"networkUsageType"`
+	IsHTTPKeepAlive                bool                         `xml:"isHttpKeepAlive"`
+	ConnectionTimeout              int                          `xml:"connectionTimeout"`
+	CertificateName                string                       `xml:"certificateName"`
+	LoadBalancerRuleList           []LoadBalancerRule           `xml:"loadBalancerRuleList>loadBalancerRule,omitempty"`
+	LoadBalancedServerInstanceList []LoadBalancedServerInstance `xml:"loadBalancedServerInstanceList>loadBalancedServerInstance,omitempty"`
+}
+
+type LoadBalancerRule struct {
+	ProtocolType       common.CommonCode `xml:"protocolType"`
+	LoadBalancerPort   int               `xml:"loadBalancerPort"`
+	ServerPort         int               `xml:"serverPort"`
+	L7HealthCheckPath  string            `xml:"l7HealthCheckPath"`
+	CertificateName    string            `xml:"certificateName"`
+	ProxyProtocolUseYn string            `xml:"proxyProtocolUseYn"`
+}
+
+type LoadBalancedServerInstance struct {
+	ServerInstanceList          []ServerInstance          `xml:"serverInstance,omitempty"`
+	ServerHealthCheckStatusList []ServerHealthCheckStatus `xml:"serverHealthCheckStatusList>serverHealthCheckStatus,omitempty"`
+}
+
+type ServerHealthCheckStatus struct {
+	ProtocolType       common.CommonCode `xml:"protocolType"`
+	LoadBalancerPort   int               `xml:"loadBalancerPort"`
+	ServerPort         int               `xml:"serverPort"`
+	L7HealthCheckPath  string            `xml:"l7HealthCheckPath"`
+	ProxyProtocolUseYn string            `xml:"proxyProtocolUseYn"`
+	ServerStatus       bool              `xml:"serverStatus"`
 }

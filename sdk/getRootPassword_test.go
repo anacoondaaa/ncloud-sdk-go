@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -12,7 +14,7 @@ var _ = Describe("Get Root Password", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getRootPasswordResponse>
+				Reply(http.StatusOK).BodyString(`<getRootPasswordResponse>
 							<requestId>074fa0db-a289-4272-8ed5-9f94a0ae5173</requestId>
 		  					<returnCode>0</returnCode>
 							<returnMessage>success</returnMessage>
@@ -69,7 +71,7 @@ var _ = Describe("Get Root Password", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>24001</returnCode>
 					<returnMessage>
 					Invalid authentication key. Please check authentication key or input type and try again.
@@ -101,7 +103,7 @@ var _ = Describe("Get Root Password", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>1300</returnCode>
 					<returnMessage>
 					Please try your call again later. Temporarily out of service. If error continue, Please contact our customer service center.

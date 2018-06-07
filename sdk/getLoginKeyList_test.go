@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("GetLoginKeyList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getLoginKeyListResponse>
+				Reply(http.StatusOK).BodyString(`<getLoginKeyListResponse>
 					<requestId>be885b84-4fa7-4f74-a688-b7b8dee72950</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -71,7 +73,7 @@ var _ = Describe("GetLoginKeyList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getLoginKeyListResponse>
+				Reply(http.StatusOK).BodyString(`<getLoginKeyListResponse>
 					<requestId>53629aee-b34b-4371-b834-94c82e0077fe</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -112,7 +114,7 @@ var _ = Describe("GetLoginKeyList", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getLoginKeyListResponse>
+				Reply(http.StatusOK).BodyString(`<getLoginKeyListResponse>
 					<requestId>b275cef4-117f-428d-9bad-825a93f51227</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>

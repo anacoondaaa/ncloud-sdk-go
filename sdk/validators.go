@@ -51,6 +51,15 @@ func validateIncludeValues(key string, value string, includeValues []string) err
 	return fmt.Errorf("%s should be %s", key, strings.Join(includeValues, " or "))
 }
 
+func validateIncludeValuesIgnoreCase(key string, value string, includeValues []string) error {
+	for _, included := range includeValues {
+		if strings.EqualFold(value, included) {
+			return nil
+		}
+	}
+	return fmt.Errorf("%s should be %s", key, strings.Join(includeValues, " or "))
+}
+
 func validateBoolValue(key string, value string) error {
 	for _, included := range BOOL_VALUE_STRINGS {
 		if value == included {
@@ -70,7 +79,7 @@ func validateStringLenBetween(key string, value interface{}, min, max int) error
 		return fmt.Errorf("expected type of %s to be string", key)
 	}
 	if len(v) < min || len(v) > max {
-		fmt.Errorf("expected length of %s to be in the range (%d - %d), got %s", key, min, max, v)
+		return fmt.Errorf("expected length of %s to be in the range (%d - %d), got %s", key, min, max, v)
 	}
 	return nil
 }

@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Server Image Product List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerImageProductListResponse>
+				Reply(http.StatusOK).BodyString(`<getServerImageProductListResponse>
 					<requestId>03a18f33-dc4b-4bc4-be14-fd886cbf2a8d</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -716,7 +718,7 @@ var _ = Describe("Server Image Product List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerImageProductListResponse>
+				Reply(http.StatusOK).BodyString(`<getServerImageProductListResponse>
 					<requestId>94f76273-6410-46ed-809b-352ce50f544d</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -784,7 +786,7 @@ var _ = Describe("Server Image Product List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<getServerImageProductListResponse>
+				Reply(http.StatusOK).BodyString(`<getServerImageProductListResponse>
 					<requestId>33630663-e742-4283-b289-bdcafa04a768</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -814,7 +816,7 @@ var _ = Describe("Server Image Product List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(401).BodyString(`<responseError>
+				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Expired url.</returnMessage>
 					</responseError>`)

@@ -1,6 +1,8 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
@@ -13,7 +15,7 @@ var _ = Describe("Disassociate Public IP From Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<disassociatePublicIpFromServerInstanceResponse>
+				Reply(http.StatusOK).BodyString(`<disassociatePublicIpFromServerInstanceResponse>
 					<requestId>bd83cf83-0361-4c74-aa2e-3e5243a58f1d</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -136,7 +138,7 @@ var _ = Describe("Disassociate Public IP From Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(400).BodyString(`<responseError>
+				Reply(http.StatusBadRequest).BodyString(`<responseError>
 						<returnCode>28102</returnCode>
 						<returnMessage>
 						The public IP is already disassociated from the server.

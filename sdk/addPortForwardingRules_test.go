@@ -1,10 +1,13 @@
 package sdk_test
 
 import (
+	"net/http"
+
 	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	"fmt"
+
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
@@ -14,7 +17,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Get("/server").
-				Reply(200).BodyString(`<addPortForwardingRulesResponse>
+				Reply(http.StatusOK).BodyString(`<addPortForwardingRulesResponse>
     <requestId>943e41d1-f2b9-43a9-b308-5f12152a2f7f</requestId>
     <returnCode>0</returnCode>
     <returnMessage>success</returnMessage>
@@ -174,7 +177,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
 					Get("/server").
-					Reply(400).BodyString(fmt.Sprintf(`<responseError>
+					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24069</returnCode>
 						<returnMessage>Invalid internal port has been configured. Usable internal port(LINUX type : 22, WINDOWS type : 3389)</returnMessage>
 					</responseError>`))
@@ -211,7 +214,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
 					Get("/server").
-					Reply(400).BodyString(fmt.Sprintf(`<responseError>
+					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24070</returnCode>
 						<returnMessage>A single external port number is used in multiple rules. External port number : %d</returnMessage>
 					</responseError>`, externalPort))
@@ -246,7 +249,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
 					Get("/server").
-					Reply(400).BodyString(fmt.Sprintf(`<responseError>
+					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24071</returnCode>
 						<returnMessage>Single server is existing in multiple rules. Server IP address : 192.168.120.28</returnMessage>
 					</responseError>`))
@@ -281,7 +284,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
 					Get("/server").
-					Reply(400).BodyString(fmt.Sprintf(`<responseError>
+					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24074</returnCode>
 						<returnMessage>External internal port as well as server instance number are not designated to port forward rule.</returnMessage>
 					</responseError>`))
