@@ -384,7 +384,7 @@ type AccessControlRule struct {
 	DestinationPort                        string            `xml:"destinationPort"`
 }
 
-type RequestNasCreateVolumeInstance struct {
+type RequestCreateNasVolumeInstance struct {
 	VolumeName                      string
 	VolumeSize                      int
 	VolumeAllotmentProtocolTypeCode string

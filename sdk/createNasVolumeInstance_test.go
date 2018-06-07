@@ -72,7 +72,7 @@ var _ = Describe("Create NAS Volume Instance", func() {
 			gock.Off()
 		})
 		It("should create NAS Volume", func() {
-			reqParams := &RequestNasCreateVolumeInstance{
+			reqParams := &RequestCreateNasVolumeInstance{
 				VolumeName:                      "n000212_penguin",
 				VolumeSize:                      600,
 				VolumeAllotmentProtocolTypeCode: "NFS",
@@ -111,7 +111,7 @@ var _ = Describe("Create NAS Volume Instance", func() {
 			gock.Off()
 		})
 		It("should fail", func() {
-			reqParams := &RequestNasCreateVolumeInstance{
+			reqParams := &RequestCreateNasVolumeInstance{
 				VolumeName:                      "n000212_penguin",
 				VolumeSize:                      600,
 				VolumeAllotmentProtocolTypeCode: "NFS",
