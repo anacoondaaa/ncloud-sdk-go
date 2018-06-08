@@ -220,7 +220,7 @@ var _ = Describe("Get Load Balancer SSL Certicate", func() {
 		})
 		It("should get One Load Balancer SSL Certificate", func() {
 			conn := NewConnection(accessKey, secretKey)
-			result, err := conn.GetLoadBalancerSslCertificateList("333333")
+			result, err := conn.GetLoadBalancerSslCertificateList("aaa")
 
 			Expect(err).To(BeNil())
 			Expect(result.TotalRows).To(Equal(1))
