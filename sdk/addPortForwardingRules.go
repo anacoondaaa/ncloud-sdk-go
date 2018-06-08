@@ -16,6 +16,8 @@ func processAddPortForwardingRules(reqParams *RequestAddPortForwardingRules) (ma
 	if reqParams == nil || reqParams.PortForwardingConfigurationNo == "" {
 		return params, errors.New("portForwardingConfigurationNo is required")
 	}
+	params["portForwardingConfigurationNo"] = reqParams.PortForwardingConfigurationNo
+
 	if len(reqParams.PortForwardingRuleList) == 0 {
 		return nil, errors.New("portForwardingRuleList is required")
 	}
