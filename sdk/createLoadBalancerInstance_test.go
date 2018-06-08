@@ -783,7 +783,7 @@ var _ = Describe("Create Load Balancer Instance", func() {
 		})
 	})
 
-	FDescribe("Check Arguments", func() {
+	Describe("Check Arguments", func() {
 		It("should be error : 'LoadBalancerRuleList is required'", func() {
 			reqParams := new(RequestCreateLoadBalancerInstance)
 			conn := NewConnection(accessKey, secretKey)
