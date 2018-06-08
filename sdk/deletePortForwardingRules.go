@@ -13,7 +13,7 @@ import (
 func processDeletePortForwardingRules(reqParams *RequestDeletePortForwardingRules) (map[string]string, error) {
 	params := make(map[string]string)
 
-	if reqParams == nil || len(reqParams.PortForwardingConfigurationNo) == 0 {
+	if reqParams == nil || reqParams.PortForwardingConfigurationNo == "" {
 		return params, errors.New("portForwardingConfigurationNo is required")
 	}
 
