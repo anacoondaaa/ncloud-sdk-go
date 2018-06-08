@@ -16,10 +16,12 @@ func processGetNasVolumeInstanceListParams(reqParams *RequestGetNasVolumeInstanc
 		return params, nil
 	}
 
-	if err := validateIncludeValues("VolumeAllotmentProtocolTypeCode", reqParams.VolumeAllotmentProtocolTypeCode, []string{"NFS", "CIFS"}); err != nil {
-		return nil, err
+	if reqParams.VolumeAllotmentProtocolTypeCode != "" {
+		if err := validateIncludeValues("VolumeAllotmentProtocolTypeCode", reqParams.VolumeAllotmentProtocolTypeCode, []string{"NFS", "CIFS"}); err != nil {
+			return nil, err
+		}
+		params["volumeAllotmentProtocolTypeCode"] = reqParams.VolumeAllotmentProtocolTypeCode
 	}
-	params["volumeAllotmentProtocolTypeCode"] = reqParams.VolumeAllotmentProtocolTypeCode
 
 	if reqParams.IsEventConfiguration != "" {
 		if err := validateBoolValue("IsEventConfiguration", reqParams.IsEventConfiguration); err != nil {
