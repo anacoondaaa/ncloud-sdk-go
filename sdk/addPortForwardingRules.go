@@ -13,17 +13,16 @@ import (
 func processAddPortForwardingRules(reqParams *RequestAddPortForwardingRules) (map[string]string, error) {
 	params := make(map[string]string)
 
-	if reqParams == nil || len(reqParams.PortForwardingConfigurationNo) == 0 {
+	if reqParams == nil || reqParams.PortForwardingConfigurationNo == "" {
 		return params, errors.New("portForwardingConfigurationNo is required")
 	}
 	if len(reqParams.PortForwardingRuleList) == 0 {
 		return nil, errors.New("portForwardingRuleList is required")
-	} else {
-		for k, v := range reqParams.PortForwardingRuleList {
-			params[fmt.Sprintf("portForwardingRuleList.%d.serverInstanceNo", k+1)] = v.ServerInstanceNo
-			params[fmt.Sprintf("portForwardingRuleList.%d.portForwardingInternalPort", k+1)] = v.PortForwardingInternalPort
-			params[fmt.Sprintf("portForwardingRuleList.%d.portForwardingExternalPort", k+1)] = v.PortForwardingExternalPort
-		}
+	}
+	for k, v := range reqParams.PortForwardingRuleList {
+		params[fmt.Sprintf("portForwardingRuleList.%d.serverInstanceNo", k+1)] = v.ServerInstanceNo
+		params[fmt.Sprintf("portForwardingRuleList.%d.portForwardingInternalPort", k+1)] = v.PortForwardingInternalPort
+		params[fmt.Sprintf("portForwardingRuleList.%d.portForwardingExternalPort", k+1)] = v.PortForwardingExternalPort
 	}
 	return params, nil
 }
