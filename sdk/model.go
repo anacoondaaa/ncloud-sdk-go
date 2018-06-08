@@ -487,6 +487,7 @@ type LoadBalancerInstanceList struct {
 	TotalRows                int                    `xml:"totalRows"`
 }
 
+// LoadBalancerInstance is struct for load balancer instance
 type LoadBalancerInstance struct {
 	LoadBalancerInstanceNo         string                       `xml:"loadBalancerInstanceNo"`
 	VirtualIP                      string                       `xml:"virtualIp"`
@@ -507,6 +508,7 @@ type LoadBalancerInstance struct {
 	LoadBalancedServerInstanceList []LoadBalancedServerInstance `xml:"loadBalancedServerInstanceList>loadBalancedServerInstance,omitempty"`
 }
 
+// LoadBalancerRule is struct for load balancer rule
 type LoadBalancerRule struct {
 	ProtocolType       common.CommonCode `xml:"protocolType"`
 	LoadBalancerPort   int               `xml:"loadBalancerPort"`
@@ -516,11 +518,13 @@ type LoadBalancerRule struct {
 	ProxyProtocolUseYn string            `xml:"proxyProtocolUseYn"`
 }
 
+// LoadBalancedServerInstance is struct for load balanced server instance
 type LoadBalancedServerInstance struct {
 	ServerInstanceList          []ServerInstance          `xml:"serverInstance,omitempty"`
 	ServerHealthCheckStatusList []ServerHealthCheckStatus `xml:"serverHealthCheckStatusList>serverHealthCheckStatus,omitempty"`
 }
 
+// ServerHealthCheckStatus is struct for server health check status
 type ServerHealthCheckStatus struct {
 	ProtocolType       common.CommonCode `xml:"protocolType"`
 	LoadBalancerPort   int               `xml:"loadBalancerPort"`
@@ -528,4 +532,26 @@ type ServerHealthCheckStatus struct {
 	L7HealthCheckPath  string            `xml:"l7HealthCheckPath"`
 	ProxyProtocolUseYn string            `xml:"proxyProtocolUseYn"`
 	ServerStatus       bool              `xml:"serverStatus"`
+}
+
+// RequestCreateLoadBalancerInstance is request type to create load balancer instance
+type RequestCreateLoadBalancerInstance struct {
+	LoadBalancerName              string
+	LoadBalancerAlgorithmTypeCode string
+	LoadBalancerDescription       string
+	LoadBalancerRuleList          []RequestLoadBalancerRule
+	ServerInstanceNoList          []string
+	InternetLineTypeCode          string
+	NetworkUsageTypeCode          string
+	RegionNo                      string
+}
+
+// RequestLoadBalancerRule is request type to create load balancer rule
+type RequestLoadBalancerRule struct {
+	ProtocolTypeCode   string
+	LoadBalancerPort   int
+	ServerPort         int
+	L7HealthCheckPath  string
+	CertificateName    string
+	ProxyProtocolUseYn string
 }
