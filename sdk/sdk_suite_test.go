@@ -2,6 +2,7 @@ package sdk_test
 
 import (
 	"math/rand"
+	"os"
 	"time"
 
 	. "github.com/onsi/ginkgo"
@@ -36,6 +37,6 @@ func TestSDK(t *testing.T) {
 }
 
 var _ = BeforeSuite(func() {
-	accessKey = "T4tcoGqU4eQ8vItfNBHK"
-	secretKey = "hFVBgseGOGjxmYVupJV36qG3DaXpyj74S1BGAr6C"
+	accessKey = os.Getenv("NCLOUD_ACCESS_KEY")
+	secretKey = os.Getenv("NCLOUD_SECRET_KEY")
 })

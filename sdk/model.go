@@ -555,3 +555,8 @@ type RequestLoadBalancerRule struct {
 	CertificateName    string
 	ProxyProtocolUseYn string
 }
+
+// RequestDeleteLoadBalancerInstances is request type to delete load balancer instances
+type RequestDeleteLoadBalancerInstances struct {
+	LoadBalancerInstanceNoList []string
+}
