@@ -313,4 +313,24 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 			})
 		})
 	})
+
+
+	Describe("Check Arguments", func() {
+		It("should be error : 'PortForwardingConfigurationNo is required'", func() {
+			reqParams := new(RequestAddPortForwardingRules)
+			conn := NewConnection(accessKey, secretKey)
+			_, err := conn.AddPortForwardingRules(reqParams)
+
+			Expect(err.Error()).To(Equal("PortForwardingConfigurationNo field is required"))
+		})
+
+		It("should be error : 'PortForwardingRuleList is required'", func() {
+			reqParams := new(RequestAddPortForwardingRules)
+			reqParams.PortForwardingConfigurationNo = "1"
+			conn := NewConnection(accessKey, secretKey)
+			_, err := conn.AddPortForwardingRules(reqParams)
+
+			Expect(err.Error()).To(Equal("PortForwardingRuleList is required"))
+		})
+	})
 })
