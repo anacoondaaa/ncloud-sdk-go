@@ -560,3 +560,11 @@ type RequestLoadBalancerRule struct {
 type RequestDeleteLoadBalancerInstances struct {
 	LoadBalancerInstanceNoList []string
 }
+
+// RequestChangeLoadBalancerInstanceConfiguration is request type to change load balancer instance configuration
+type RequestChangeLoadBalancerInstanceConfiguration struct {
+	LoadBalancerInstanceNo        string
+	LoadBalancerAlgorithmTypeCode string
+	LoadBalancerDescription       string
+	LoadBalancerRuleList          []RequestLoadBalancerRule
+}
