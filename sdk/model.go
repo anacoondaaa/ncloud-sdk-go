@@ -583,3 +583,11 @@ type SslCertificate struct {
 	PublicKeyCertificate string `xml:"publicKeyCertificate"`
 	CertificateChain     string `xml:"certificateChain"`
 }
+
+// RequestAddSslCertificate is response type to add SSL Certificate
+type RequestAddSslCertificate struct {
+	CertificateName      string
+	PrivateKey           string
+	PublicKeyCertificate string
+	CertificateChain     string
+}
