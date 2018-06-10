@@ -568,3 +568,9 @@ type RequestChangeLoadBalancerInstanceConfiguration struct {
 	LoadBalancerDescription       string
 	LoadBalancerRuleList          []RequestLoadBalancerRule
 }
+
+// RequestChangeLoadBalancedServerInstances is request type to change load balanced server instances
+type RequestChangeLoadBalancedServerInstances struct {
+	LoadBalancerInstanceNo string
+	ServerInstanceNoList   []string
+}
