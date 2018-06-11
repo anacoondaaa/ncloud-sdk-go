@@ -575,6 +575,13 @@ type RequestChangeLoadBalancedServerInstances struct {
 	ServerInstanceNoList   []string
 }
 
+// RequestGetLoadBalancerTargetServerInstanceList is request type to get load balancer target server instance list
+type RequestGetLoadBalancerTargetServerInstanceList struct {
+	InternetLineTypeCode string
+	NetworkUsageTypeCode string
+	RegionNo             string
+}
+
 // SslCertificateList is response type to return SSL Certificate list
 type SslCertificateList struct {
 	common.CommonResponse
@@ -588,4 +595,12 @@ type SslCertificate struct {
 	PrivateKey           string `xml:"privateKey"`
 	PublicKeyCertificate string `xml:"publicKeyCertificate"`
 	CertificateChain     string `xml:"certificateChain"`
+}
+
+// RequestAddSslCertificate is response type to add SSL Certificate
+type RequestAddSslCertificate struct {
+	CertificateName      string
+	PrivateKey           string
+	PublicKeyCertificate string
+	CertificateChain     string
 }
