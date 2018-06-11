@@ -439,7 +439,7 @@ type RequestGetNasVolumeInstanceList struct {
 }
 
 type PortForwardingRule struct {
-	ServerInstanceNo           string `xml:"serverInstanceNo"`
+	ServerInstanceNo           string `xml:"serverInstance>serverInstanceNo"`
 	PortForwardingExternalPort string `xml:"portForwardingExternalPort"`
 	PortForwardingInternalPort string `xml:"portForwardingInternalPort"`
 }
