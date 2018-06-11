@@ -731,7 +731,7 @@ var _ = Describe("Create Load Balancer Instance", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := new(RequestCreateLoadBalancerInstance)
 			reqParams.LoadBalancerRuleList = []RequestLoadBalancerRule{
@@ -763,7 +763,7 @@ var _ = Describe("Create Load Balancer Instance", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := new(RequestCreateLoadBalancerInstance)
 			reqParams.LoadBalancerRuleList = []RequestLoadBalancerRule{

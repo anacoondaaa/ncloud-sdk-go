@@ -137,7 +137,7 @@ If error continue, Please contact our customer service center.`))
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.DeleteLoadBalancerSslCertificate("aaa")
 
@@ -159,7 +159,7 @@ If error continue, Please contact our customer service center.`))
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.DeleteLoadBalancerSslCertificate("bbbb")
 

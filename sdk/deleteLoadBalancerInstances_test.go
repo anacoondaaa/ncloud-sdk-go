@@ -265,7 +265,7 @@ var _ = Describe("Delete Load Balancer Instances", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := new(RequestDeleteLoadBalancerInstances)
 			reqParams.LoadBalancerInstanceNoList = []string{"810070"}
@@ -289,7 +289,7 @@ var _ = Describe("Delete Load Balancer Instances", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := new(RequestDeleteLoadBalancerInstances)
 			reqParams.LoadBalancerInstanceNoList = []string{"810070"}
