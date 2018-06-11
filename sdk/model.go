@@ -569,6 +569,13 @@ type RequestChangeLoadBalancerInstanceConfiguration struct {
 	LoadBalancerRuleList          []RequestLoadBalancerRule
 }
 
+// RequestGetLoadBalancerTargetServerInstanceList is request type to get load balancer target server instance list
+type RequestGetLoadBalancerTargetServerInstanceList struct {
+	InternetLineTypeCode string
+	NetworkUsageTypeCode string
+	RegionNo             string
+}
+
 // SslCertificateList is response type to return SSL Certificate list
 type SslCertificateList struct {
 	common.CommonResponse
