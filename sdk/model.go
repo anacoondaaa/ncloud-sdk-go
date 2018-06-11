@@ -568,3 +568,18 @@ type RequestChangeLoadBalancerInstanceConfiguration struct {
 	LoadBalancerDescription       string
 	LoadBalancerRuleList          []RequestLoadBalancerRule
 }
+
+// SslCertificateList is response type to return SSL Certificate list
+type SslCertificateList struct {
+	common.CommonResponse
+	SslCertificateList []SslCertificate `xml:"sslCertificateList>sslCertificate,omitempty"`
+	TotalRows          int              `xml:"totalRows"`
+}
+
+// SslCertificate is struct for SSL Certificate
+type SslCertificate struct {
+	CertificateName      string `xml:"certificateName"`
+	PrivateKey           string `xml:"privateKey"`
+	PublicKeyCertificate string `xml:"publicKeyCertificate"`
+	CertificateChain     string `xml:"certificateChain"`
+}
