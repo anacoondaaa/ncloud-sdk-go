@@ -494,7 +494,7 @@ var _ = Describe("Get Server Instance List", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.GetServerInstanceList(nil)
 

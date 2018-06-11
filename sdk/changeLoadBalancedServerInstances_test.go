@@ -379,7 +379,7 @@ var _ = Describe("Change Load Balanced Instance", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := new(RequestChangeLoadBalancedServerInstances)
 			reqParams.LoadBalancerInstanceNo = "814712"
@@ -403,7 +403,7 @@ var _ = Describe("Change Load Balanced Instance", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should be failed by autorization fail", func() {
+		It("should be failed by authorization fail", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := new(RequestChangeLoadBalancedServerInstances)
 			reqParams.LoadBalancerInstanceNo = "814712"
