@@ -14,7 +14,7 @@ var _ = Describe("Change NAS Volume Size", func() {
 	Describe("Change NAS Volume Size", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusOK).BodyString(`
 					<changeNasVolumeSizeResponse>
     <requestId>4f7f3c48-cc33-4013-9983-26f3c04bff70</requestId>
@@ -113,7 +113,7 @@ var _ = Describe("Change NAS Volume Size", func() {
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Invalid consumerKey</returnMessage>
@@ -137,7 +137,7 @@ var _ = Describe("Change NAS Volume Size", func() {
 	Describe("Expired URL", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Expired url.</returnMessage>

@@ -14,7 +14,7 @@ var _ = Describe("Change Load Balanced Instance", func() {
 	Describe("Change http Load Balanced Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/loadbalancer").
+				Post("/loadbalancer").
 				Reply(http.StatusOK).BodyString(`
 					<changeLoadBalancedServerInstancesResponse>
 					<requestId>b056782c-6fac-4a37-8e18-8e92fd04e707</requestId>
@@ -370,7 +370,7 @@ var _ = Describe("Change Load Balanced Instance", func() {
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/loadbalancer").
+				Post("/loadbalancer").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Invalid consumerKey</returnMessage>
@@ -394,7 +394,7 @@ var _ = Describe("Change Load Balanced Instance", func() {
 	Describe("Expired URL", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/loadbalancer").
+				Post("/loadbalancer").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Expired url.</returnMessage>

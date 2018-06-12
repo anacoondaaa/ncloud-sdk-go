@@ -16,7 +16,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 	Describe("Add Port Forwarding Rules", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusOK).BodyString(`<addPortForwardingRulesResponse>
     <requestId>943e41d1-f2b9-43a9-b308-5f12152a2f7f</requestId>
     <returnCode>0</returnCode>
@@ -176,7 +176,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 		Context("Invalid internal port has been configured", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
-					Get("/server").
+					Post("/server").
 					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24069</returnCode>
 						<returnMessage>Invalid internal port has been configured. Usable internal port(LINUX type : 22, WINDOWS type : 3389)</returnMessage>
@@ -213,7 +213,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
-					Get("/server").
+					Post("/server").
 					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24070</returnCode>
 						<returnMessage>A single external port number is used in multiple rules. External port number : %d</returnMessage>
@@ -248,7 +248,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 		Context("Single server is existing in multiple rules", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
-					Get("/server").
+					Post("/server").
 					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24071</returnCode>
 						<returnMessage>Single server is existing in multiple rules. Server IP address : 192.168.120.28</returnMessage>
@@ -283,7 +283,7 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 		Context("External internal port as well as server instance number are not designated to port forward rule", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
-					Get("/server").
+					Post("/server").
 					Reply(http.StatusBadRequest).BodyString(fmt.Sprintf(`<responseError>
 						<returnCode>24074</returnCode>
 						<returnMessage>External internal port as well as server instance number are not designated to port forward rule.</returnMessage>
@@ -313,7 +313,6 @@ var _ = Describe("Add Port Forwarding Rules", func() {
 			})
 		})
 	})
-
 
 	Describe("Check Arguments", func() {
 		It("should be error : 'PortForwardingConfigurationNo is required'", func() {

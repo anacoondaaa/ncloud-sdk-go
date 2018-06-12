@@ -14,7 +14,7 @@ var _ = Describe("Create Server Instance", func() {
 	Describe("Create Two Linux Server Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusOK).BodyString(`<createServerInstancesResponse>
 					<requestId>eb22dc06-ff48-4d05-933d-22ca85102508</requestId>
 					<returnCode>0</returnCode>
@@ -169,7 +169,7 @@ var _ = Describe("Create Server Instance", func() {
 	Describe("Create one linux server instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusOK).BodyString(`<createServerInstancesResponse>
 					<requestId>77868086-533e-4b31-8722-b6e84dfdcddd</requestId>
 					<returnCode>0</returnCode>
@@ -265,7 +265,7 @@ var _ = Describe("Create Server Instance", func() {
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Invalid consumerKey</returnMessage>
@@ -290,7 +290,7 @@ var _ = Describe("Create Server Instance", func() {
 	Describe("No arguments", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>900</returnCode>
 					<returnMessage>Required field is not specified. location : serverImageProductCode or memberServerImageNo.</returnMessage>
@@ -312,7 +312,7 @@ var _ = Describe("Create Server Instance", func() {
 	Describe("creation limitation case", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10102</returnCode>
 					<returnMessage>
