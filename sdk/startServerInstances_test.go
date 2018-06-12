@@ -14,7 +14,7 @@ var _ = Describe("Stop Server Instances", func() {
 	Describe("Stop Server Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusOK).BodyString(`<startServerInstancesResponse>
 					<requestId>3c8797b6-f48c-4c1e-bb7f-d323f187bf14</requestId>
 					<returnCode>0</returnCode>
@@ -110,7 +110,7 @@ var _ = Describe("Stop Server Instances", func() {
 	Describe("Invalid server instance number", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>24120</returnCode>
 					<returnMessage>The input parameter server instance number is invalid. </returnMessage>
@@ -135,7 +135,7 @@ var _ = Describe("Stop Server Instances", func() {
 	Describe("Unable to start", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>25041</returnCode>
 					<returnMessage>Unable to perform operation command since (other) user is either manipulating the target server or a problem in target server. Please confirm server status once again. </returnMessage>

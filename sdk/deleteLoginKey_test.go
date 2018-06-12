@@ -14,7 +14,7 @@ var _ = Describe("Delete Login Key", func() {
 	Describe("Delete Login Key", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusOK).BodyString(`<deleteLoginKeyResponse>
 					<requestId>aec19696-46c3-4841-967b-ce5399d151cf</requestId>
 					<returnCode>0</returnCode>
@@ -38,7 +38,7 @@ var _ = Describe("Delete Login Key", func() {
 	Describe("Not exist login key name", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10406</returnCode>
 					<returnMessage>The authentication key does not exist.</returnMessage>

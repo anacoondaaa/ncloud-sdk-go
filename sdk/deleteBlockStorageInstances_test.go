@@ -14,7 +14,7 @@ var _ = Describe("Delete Block Storage Instances", func() {
 	Describe("Delete Block Storage Instances", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(http.StatusOK).BodyString(`<deleteBlockStorageInstancesResponse>
 					<requestId>4d8f4e3e-e8da-42f8-87ad-21986e96fdae</requestId>
 					<returnCode>0</returnCode>
@@ -97,7 +97,7 @@ var _ = Describe("Delete Block Storage Instances", func() {
 		Context("when invalid block storage instance no is invalid", func() {
 			BeforeEach(func() {
 				gock.New("https://api.ncloud.com").
-					Get("/server").
+					Post("/server").
 					Reply(http.StatusBadRequest).BodyString(`<responseError>
 						<returnCode>24121</returnCode>
 						<returnMessage>The input parameter storage instance number is invalid. </returnMessage>

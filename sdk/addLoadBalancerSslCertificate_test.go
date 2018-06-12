@@ -14,7 +14,7 @@ var _ = Describe("Add Load Balancer SSL Certicate", func() {
 	Describe("Add Load Balancer SSL Certicate", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/loadbalancer").
+				Post("/loadbalancer").
 				Reply(http.StatusOK).BodyString(`
 <addLoadBalancerSslCertificateResponse>
 <requestId>e45a3cc1-b732-41b6-83de-568e09e0a93c</requestId>
@@ -148,7 +148,7 @@ Kp6GlcmqTBU7RXAwPE4MeQ20yMmdipoPMb8nug==
 	Describe("Invalid SSL Certificate keys", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/loadbalancer").
+				Post("/loadbalancer").
 				Reply(http.StatusBadRequest).BodyString(`
 					<responseError>
 					<returnCode>26040</returnCode>
@@ -180,7 +180,7 @@ Kp6GlcmqTBU7RXAwPE4MeQ20yMmdipoPMb8nug==
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/loadbalancer").
+				Post("/loadbalancer").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Invalid consumerKey</returnMessage>
@@ -211,7 +211,7 @@ MIIDGDCCAgACCQDGDiYiQixnsTANBgkqhkiG9w0BAQsFADBOMQswCQYDVQQGEwJL
 	Describe("Expired URL", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/loadbalancer").
+				Post("/loadbalancer").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
 					<returnMessage>Expired url.</returnMessage>

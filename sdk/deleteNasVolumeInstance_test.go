@@ -12,7 +12,7 @@ var _ = Describe("Delete NAS Volume Instance", func() {
 	Describe("Delete NAS Volume Instance", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
-				Get("/server").
+				Post("/server").
 				Reply(200).BodyString(`<deleteNasVolumeInstanceResponse>
     <requestId>d131a03a-ecc4-407d-88d9-059911b34f74</requestId>
     <returnCode>0</returnCode>
