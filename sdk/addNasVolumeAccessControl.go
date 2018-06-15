@@ -10,7 +10,7 @@ import (
 	request "github.com/NaverCloudPlatform/ncloud-sdk-go/request"
 )
 
-func processSetNasVolumeAccessControlParams(reqParams *RequestNasVolumeAccessControl) (map[string]string, error) {
+func processAddNasVolumeAccessControlParams(reqParams *RequestNasVolumeAccessControl) (map[string]string, error) {
 	params := make(map[string]string)
 
 	if reqParams == nil {
@@ -37,15 +37,15 @@ func processSetNasVolumeAccessControlParams(reqParams *RequestNasVolumeAccessCon
 	return params, nil
 }
 
-// SetNasVolumeAccessControl set Nas Volume Access Control
-func (s *Conn) SetNasVolumeAccessControl(reqParams *RequestNasVolumeAccessControl) (*NasVolumeInstanceList, error) {
-	params, err := processSetNasVolumeAccessControlParams(reqParams)
+// AddNasVolumeAccessControl set Nas Volume Access Control
+func (s *Conn) AddNasVolumeAccessControl(reqParams *RequestNasVolumeAccessControl) (*NasVolumeInstanceList, error) {
+	params, err := processAddNasVolumeAccessControlParams(reqParams)
 
 	if err != nil {
 		return nil, err
 	}
 
-	params["action"] = "setNasVolumeAccessControl"
+	params["action"] = "addNasVolumeAccessControl"
 
 	bytes, resp, err := request.NewRequest(s.accessKey, s.secretKey, "POST", s.apiURL+"server/", params)
 	if err != nil {
