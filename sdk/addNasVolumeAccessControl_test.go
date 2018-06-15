@@ -10,13 +10,13 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("Set Nas Volume Access Control", func() {
-	Describe("Set Nas Volume Access Control", func() {
+var _ = Describe("Add Nas Volume Access Control", func() {
+	Describe("Add Nas Volume Access Control", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`
-					<setNasVolumeAccessControlResponse>
+					<AddNasVolumeAccessControlResponse>
 					<requestId>8979f7b6-d1eb-486f-960f-e2aa374eb860</requestId>
 					<returnCode>0</returnCode>
 					<returnMessage>success</returnMessage>
@@ -215,20 +215,20 @@ var _ = Describe("Set Nas Volume Access Control", func() {
 							</nasVolumeServerInstanceList>
 						</nasVolumeInstance>
 					</nasVolumeInstanceList>
-				</setNasVolumeAccessControlResponse>
+				</AddNasVolumeAccessControlResponse>
 					`)
 		})
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should set Nas Volume Access Control", func() {
+		It("should add Nas Volume Access Control", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := &RequestNasVolumeAccessControl{
 				NasVolumeInstanceNo:  "823525",
-				ServerInstanceNoList: []string{"805829", "805841"},
-				CustomIPList:         []string{"10.1.1.1", "10.1.2.1"},
+				ServerInstanceNoList: []string{"805832", "805835"},
+				CustomIPList:         []string{"10.4.1.1", "10.4.2.1"},
 			}
-			result, err := conn.SetNasVolumeAccessControl(reqParams)
+			result, err := conn.AddNasVolumeAccessControl(reqParams)
 
 			Expect(err).To(BeNil())
 			Expect(result.TotalRows).To(Equal(1))
@@ -238,8 +238,6 @@ var _ = Describe("Set Nas Volume Access Control", func() {
 
 			nvi := result.NasVolumeInstanceList[0]
 			Expect(nvi.NasVolumeInstanceNo).To(Equal(reqParams.NasVolumeInstanceNo))
-			Expect(len(nvi.NasVolumeServerInstanceList)).To(Equal(len(reqParams.ServerInstanceNoList)))
-			Expect(len(nvi.NasVolumeInstanceCustomIPList)).To(Equal(len(reqParams.CustomIPList)))
 		})
 	})
 
@@ -256,14 +254,14 @@ var _ = Describe("Set Nas Volume Access Control", func() {
 		AfterEach(func() {
 			gock.Off()
 		})
-		It("should not set Nas Volume Access Control by invalid nasVolumeInstanceNo", func() {
+		It("should not add Nas Volume Access Control by invalid nasVolumeInstanceNo", func() {
 			conn := NewConnection(accessKey, secretKey)
 			reqParams := &RequestNasVolumeAccessControl{
 				NasVolumeInstanceNo:  "8235251",
 				ServerInstanceNoList: []string{"805829", "805841"},
 				CustomIPList:         []string{"10.1.1.1", "10.1.2.1"},
 			}
-			result, err := conn.SetNasVolumeAccessControl(reqParams)
+			result, err := conn.AddNasVolumeAccessControl(reqParams)
 
 			Expect(result.ReturnCode).To(Equal(24109))
 			Expect(result.ReturnMessage).To(Equal("The input parameter instance number is invalid."))
@@ -290,7 +288,7 @@ var _ = Describe("Set Nas Volume Access Control", func() {
 				ServerInstanceNoList: []string{"805829", "805841"},
 				CustomIPList:         []string{"10.1.1.1", "10.1.2.1"},
 			}
-			result, err := conn.SetNasVolumeAccessControl(reqParams)
+			result, err := conn.AddNasVolumeAccessControl(reqParams)
 
 			Expect(result.ReturnCode).To(Equal(800))
 			Expect(result.ReturnMessage).To(Equal("Invalid consumerKey"))
@@ -317,7 +315,7 @@ var _ = Describe("Set Nas Volume Access Control", func() {
 				ServerInstanceNoList: []string{"805829", "805841"},
 				CustomIPList:         []string{"10.1.1.1", "10.1.2.1"},
 			}
-			result, err := conn.SetNasVolumeAccessControl(reqParams)
+			result, err := conn.AddNasVolumeAccessControl(reqParams)
 
 			Expect(result.ReturnCode).To(Equal(800))
 			Expect(result.ReturnMessage).To(Equal("Expired url."))

@@ -614,8 +614,8 @@ type RequestChangeNasVolumeSize struct {
 	VolumeSize          int
 }
 
-// RequestSetNasVolumeAccessControl is request type for nas volume access control operations
-type RequestSetNasVolumeAccessControl struct {
+// RequestNasVolumeAccessControl is request type for nas volume access control operations
+type RequestNasVolumeAccessControl struct {
 	NasVolumeInstanceNo  string
 	ServerInstanceNoList []string
 	CustomIPList         []string
