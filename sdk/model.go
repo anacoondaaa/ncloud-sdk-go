@@ -56,11 +56,12 @@ type RequestCreateServerImage struct {
 }
 
 type RequestGetServerImageProductList struct {
-	ExclusionProductCode string
-	ProductCode          string
-	PlatformTypeCodeList []string
-	BlockStorageSize     int
-	RegionNo             string
+	ExclusionProductCode        string
+	ProductCode                 string
+	PlatformTypeCodeList        []string
+	InfraResourceDetailTypeCode string
+	BlockStorageSize            int
+	RegionNo                    string
 }
 
 // ProductList : Response of server product list
@@ -101,6 +102,7 @@ type RequestCreateServerInstance struct {
 	UserData                              string
 	ZoneNo                                string
 	AccessControlGroupConfigurationNoList []string
+	RaidTypeName                          string
 }
 
 type ServerInstanceList struct {
@@ -241,6 +243,7 @@ type RequestGetServerInstanceList struct {
 	BaseBlockStorageDiskDetailTypeCode string
 	SortedBy                           string
 	SortingOrder                       string
+	ServerInstanceTypeCodeList         []string
 }
 
 type RequestStopServerInstances struct {
@@ -351,6 +354,8 @@ type RequestGetServerProductList struct {
 	ExclusionProductCode   string
 	ProductCode            string
 	ServerImageProductCode string
+	ZoneNo                 string
+	InternetLineTypeCode   string
 	RegionNo               string
 }
 
