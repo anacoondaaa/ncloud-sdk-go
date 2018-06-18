@@ -349,6 +349,11 @@ type BlockStorageInstance struct {
 	Zone                            common.Zone       `xml:"zone"`
 }
 
+// RequestDetachBlockStorageInstance is request type to detach block storage instance from server instance
+type RequestDetachBlockStorageInstance struct {
+	BlockStorageInstanceNoList []string
+}
+
 // RequestGetServerProductList : Request to get server product list
 type RequestGetServerProductList struct {
 	ExclusionProductCode   string
