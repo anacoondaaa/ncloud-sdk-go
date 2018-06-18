@@ -13,8 +13,11 @@ import (
 func processRecreateServerInstanceParams(reqParams *RequestRecreateServerInstance) (map[string]string, error) {
 	params := make(map[string]string)
 
-	if reqParams == nil || reqParams.ServerInstanceNo == "" {
-		return nil, errors.New("ServerInstanceNo is required field")
+	if reqParams == nil {
+		return nil, errors.New("ServerInstanceNo and ChangeServerImageProductCode are required fields")
+	}
+	if err := validateRequiredField("ServerInstanceNo", reqParams.ServerInstanceNo); err != nil {
+		return nil, err
 	}
 	params["serverInstanceNo"] = reqParams.ServerInstanceNo
 
