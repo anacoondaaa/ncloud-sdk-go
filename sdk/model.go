@@ -349,6 +349,12 @@ type BlockStorageInstance struct {
 	Zone                            common.Zone       `xml:"zone"`
 }
 
+// RequestAttachBlockStorageInstance is request type to attach server instance
+type RequestAttachBlockStorageInstance struct {
+	ServerInstanceNo       string `xml:"serverInstanceNo"`
+	BlockStorageInstanceNo string `xml:"blockStorageInstanceNo"`
+}
+
 // RequestGetServerProductList : Request to get server product list
 type RequestGetServerProductList struct {
 	ExclusionProductCode   string
