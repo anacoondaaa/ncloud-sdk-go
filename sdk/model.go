@@ -351,8 +351,13 @@ type BlockStorageInstance struct {
 
 // RequestAttachBlockStorageInstance is request type to attach server instance
 type RequestAttachBlockStorageInstance struct {
-	ServerInstanceNo       string `xml:"serverInstanceNo"`
-	BlockStorageInstanceNo string `xml:"blockStorageInstanceNo"`
+	ServerInstanceNo       string
+	BlockStorageInstanceNo string
+}
+
+// RequestDetachBlockStorageInstance is request type to detach block storage instance from server instance
+type RequestDetachBlockStorageInstance struct {
+	BlockStorageInstanceNoList []string
 }
 
 // RequestGetServerProductList : Request to get server product list

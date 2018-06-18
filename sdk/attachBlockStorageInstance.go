@@ -14,7 +14,7 @@ func processAttachBlockStorageInstanceParams(reqParams *RequestAttachBlockStorag
 	params := make(map[string]string)
 
 	if reqParams == nil {
-		return nil, errors.New("serverInstanceNo and blockStorageInstanceNo is required")
+		return nil, errors.New("ServerInstanceNo and BlockStorageInstanceNo is required")
 	}
 
 	if err := validateRequiredField("ServerInstanceNo", reqParams.ServerInstanceNo); err != nil {
