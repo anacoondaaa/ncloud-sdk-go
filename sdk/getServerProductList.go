@@ -37,6 +37,17 @@ func processGetServerProductListParams(reqParams *RequestGetServerProductList) (
 		params["productCode"] = reqParams.ProductCode
 	}
 
+	if reqParams.InternetLineTypeCode != "" {
+		if err := validateIncludeValues("InternetLineTypeCode", reqParams.InternetLineTypeCode, []string{"PUBLC", "GLBL"}); err != nil {
+			return nil, err
+		}
+		params["internetLineTypeCode"] = reqParams.InternetLineTypeCode
+	}
+
+	if reqParams.ZoneNo != "" {
+		params["zoneNo"] = reqParams.ZoneNo
+	}
+
 	if reqParams.RegionNo != "" {
 		params["regionNo"] = reqParams.RegionNo
 	}

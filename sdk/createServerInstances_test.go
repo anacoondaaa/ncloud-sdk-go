@@ -341,17 +341,17 @@ var _ = Describe("Create Server Instance", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of ServerImageProductCode should be min 1 or max 20"))
+			Expect(err.Error()).To(ContainSubstring("expected length of ServerImageProductCode to be in the range (0 - 20)"))
 		})
 
-		It("should be error : 'Length of ServerProductCode should be min 1 or max 20'", func() {
+		It("should be error : 'Length of ServerProductCode should be min  or max 20'", func() {
 			reqParams := new(RequestCreateServerInstance)
 			reqParams.ServerProductCode = String(21)
 
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of ServerProductCode should be min 1 or max 20"))
+			Expect(err.Error()).To(ContainSubstring("expected length of ServerProductCode to be in the range (0 - 20)"))
 		})
 
 		It("should be error : 'Length of ServerName should be min 1 or max 20'", func() {
@@ -361,13 +361,13 @@ var _ = Describe("Create Server Instance", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of ServerName should be min 3 or max 30"))
+			Expect(err.Error()).To(ContainSubstring("expected length of ServerName to be in the range (3 - 30)"))
 
 			reqParams.ServerName = "Se"
 
 			_, err = conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of ServerName should be min 3 or max 30"))
+			Expect(err.Error()).To(ContainSubstring("expected length of ServerName to be in the range (3 - 30)"))
 		})
 
 		It("should be error : 'Length of ServerDescription should be min 1 or max 1000'", func() {
@@ -377,7 +377,7 @@ var _ = Describe("Create Server Instance", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of ServerDescription should be min 1 or max 1000"))
+			Expect(err.Error()).To(ContainSubstring("expected length of ServerDescription to be in the range (0 - 1000)"))
 		})
 
 		It("should be error : 'Length of LoginKeyName should be min 3 or max 30'", func() {
@@ -387,12 +387,12 @@ var _ = Describe("Create Server Instance", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of LoginKeyName should be min 3 or max 30"))
+			Expect(err.Error()).To(ContainSubstring("expected length of LoginKeyName to be in the range (3 - 30)"))
 
 			reqParams.LoginKeyName = String(31)
 			_, err = conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of LoginKeyName should be min 3 or max 30"))
+			Expect(err.Error()).To(ContainSubstring("expected length of LoginKeyName to be in the range (3 - 30)"))
 		})
 
 		It("should be error : 'ServerCreateCount should be min 1 or max 20'", func() {
@@ -402,7 +402,7 @@ var _ = Describe("Create Server Instance", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("ServerCreateCount should be min 1 or max 20"))
+			Expect(err.Error()).To(ContainSubstring("\"ServerCreateCount\" cannot be higher than 20: 21"))
 		})
 
 		It("should be error : 'Sum of ServerCreateCount and ServerCreateStartNo should be less than 1000'", func() {
@@ -413,7 +413,7 @@ var _ = Describe("Create Server Instance", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Sum of ServerCreateCount and ServerCreateStartNo should be less than 1000"))
+			Expect(err.Error()).To(Equal("\"Sum of ServerCreateCount and ServerCreateStartNo\" cannot be higher than 1000: 1001"))
 		})
 
 		It("should be error : 'InternetLineTypeCode should be PUBLC or GLBL'", func() {
@@ -436,14 +436,14 @@ var _ = Describe("Create Server Instance", func() {
 			Expect(err.Error()).To(Equal("FeeSystemTypeCode should be FXSUM or MTRAT"))
 		})
 
-		It("should be error : 'Length of UserData should be min 1 or max 21847'", func() {
+		It("should be error : 'expected length of UserData to be in the range (0 - 21847)'", func() {
 			reqParams := new(RequestCreateServerInstance)
 			reqParams.UserData = String(21848)
 
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.CreateServerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("Length of UserData should be min 1 or max 21847"))
+			Expect(err.Error()).To(ContainSubstring("expected length of UserData to be in the range (0 - 21847)"))
 		})
 	})
 })
