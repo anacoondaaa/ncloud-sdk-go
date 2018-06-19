@@ -306,7 +306,7 @@ var _ = Describe("Delete Load Balancer Instances", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.DeleteLoadBalancerInstances(nil)
 
-			Expect(err.Error()).To(Equal("LoadBalancerInstanceNoList is required"))
+			Expect(err.Error()).To(Equal("LoadBalancerInstanceNoList is required field"))
 		})
 
 		It("should be error : 'LoadBalancerInstanceNoList is required'", func() {
@@ -314,7 +314,7 @@ var _ = Describe("Delete Load Balancer Instances", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.DeleteLoadBalancerInstances(reqParams)
 
-			Expect(err.Error()).To(Equal("LoadBalancerInstanceNoList is required"))
+			Expect(err.Error()).To(Equal("LoadBalancerInstanceNoList is required field"))
 		})
 	})
 })

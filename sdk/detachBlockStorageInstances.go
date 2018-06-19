@@ -14,7 +14,7 @@ func processDetachBlockStorageInstanceParams(reqParams *RequestDetachBlockStorag
 	params := make(map[string]string)
 
 	if reqParams == nil || len(reqParams.BlockStorageInstanceNoList) == 0 {
-		return nil, errors.New("BlockStorageInstanceNoList field is required")
+		return nil, errors.New("BlockStorageInstanceNoList is required field")
 	}
 
 	if len(reqParams.BlockStorageInstanceNoList) > 0 {
