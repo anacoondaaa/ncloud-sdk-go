@@ -165,7 +165,7 @@ var _ = Describe("Get Load Balanced Server Instance List", func() {
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.GetLoadBalancedServerInstanceList("")
 
-			Expect(err.Error()).To(Equal("LoadBalancerInstanceNo field is required"))
+			Expect(err.Error()).To(Equal("LoadBalancerInstanceNo is required field"))
 		})
 	})
 })

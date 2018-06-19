@@ -14,7 +14,7 @@ func processGetServerProductListParams(reqParams *RequestGetServerProductList) (
 	params := make(map[string]string)
 
 	if reqParams == nil || reqParams.ServerImageProductCode == "" {
-		return params, errors.New("ServerImageProductCode field is required")
+		return params, errors.New("ServerImageProductCode is required field")
 	}
 
 	if len(reqParams.ServerImageProductCode) > 20 {
