@@ -8,7 +8,6 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"fmt"
 )
 
 var _ = Describe("Recreate Server Instance", func() {
@@ -129,7 +128,6 @@ var _ = Describe("Recreate Server Instance", func() {
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.RecreateServerInstance(reqParams)
 
-			fmt.Printf("err: %#v", result)
 			Expect(result.ReturnCode).To(Equal(800))
 			Expect(result.ReturnMessage).To(Equal("Expired url."))
 			Expect(err.Error()).To(ContainSubstring("401 Unauthorized"))
@@ -137,13 +135,13 @@ var _ = Describe("Recreate Server Instance", func() {
 	})
 
 	Describe("Check Arguments", func() {
-		It("should be error : 'ServerInstanceNo is required field'", func() {
+		It("should be error : 'ServerInstanceNo field is required'", func() {
 			reqParams := new(RequestRecreateServerInstance)
 
 			conn := NewConnection(accessKey, secretKey)
 			_, err := conn.RecreateServerInstance(reqParams)
 
-			Expect(err.Error()).To(ContainSubstring("ServerInstanceNo is required field"))
+			Expect(err.Error()).To(ContainSubstring("ServerInstanceNo field is required"))
 		})
 
 		It("should be error : 'Length of ServerInstanceName should be min 3 or max 30'", func() {
