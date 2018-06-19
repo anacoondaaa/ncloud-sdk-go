@@ -636,3 +636,9 @@ type RequestNasVolumeAccessControl struct {
 	ServerInstanceNoList []string
 	CustomIPList         []string
 }
+
+type RequestRecreateServerInstance struct {
+	ServerInstanceNo             string
+	ServerInstanceName           string
+	ChangeServerImageProductCode string
+}
