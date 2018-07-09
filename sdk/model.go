@@ -669,3 +669,11 @@ type BlockStorageSnapshotInstanceList struct {
 	TotalRows                        int                            `xml:"totalRows"`
 	BlockStorageSnapshotInstanceList []BlockStorageSnapshotInstance `xml:"blockStorageSnapshotInstanceList>blockStorageSnapshot,omitempty"`
 }
+
+type RequestGetBlockStorageSnapshotInstanceList struct {
+	BlockStorageSnapshotInstanceNoList []string
+	OriginalBlockStorageInstanceNoList []string
+	RegionNo                           string
+	PageNo                             int
+	PageSize                           int
+}
