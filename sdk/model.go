@@ -677,3 +677,29 @@ type RequestGetBlockStorageSnapshotInstanceList struct {
 	PageNo                             int
 	PageSize                           int
 }
+
+// RequestLaunchConfigurationList is request type for Launch Configuration List
+type RequestLaunchConfigurationList struct {
+	LaunchConfigurationNameList []string
+	PageNo                      int
+	PageSize                    int
+	SortedBy                    string
+	SortingOrder                string
+}
+
+type LaunchConfigurationList struct {
+	common.CommonResponse
+	TotalRows               int                   `xml:"totalRows"`
+	LaunchConfigurationList []LaunchConfiguration `xml:"launchConfigurationList>launchConfiguration,omitempty"`
+}
+
+type LaunchConfiguration struct {
+	LaunchConfigurationName string               `xml:"launchConfigurationName"`
+	ServerImageProductCode  string               `xml:"serverImageProductCode"`
+	ServerProductCode       string               `xml:"serverProductCode"`
+	MemberServerImageNo     string               `xml:"memberServerImageNo"`
+	LoginKeyName            string               `xml:"loginKeyName"`
+	CreateDate              string               `xml:"createDate"`
+	UserData                string               `xml:"userData"`
+	AccessControlGroupList  []AccessControlGroup `xml:"accessControlGroupList>accessControlGroup,omitempty"`
+}
