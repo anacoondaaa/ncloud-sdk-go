@@ -703,3 +703,13 @@ type LaunchConfiguration struct {
 	UserData                string               `xml:"userData"`
 	AccessControlGroupList  []AccessControlGroup `xml:"accessControlGroupList>accessControlGroup,omitempty"`
 }
+
+type RequestCreateLaunchConfiguration struct {
+	LaunchConfigurationName               string
+	ServerImageProductCode                string
+	ServerProductCode                     string
+	MemberServerImageNo                   string
+	AccessControlGroupConfigurationNoList []string
+	LoginKeyName                          string
+	UserData                              string
+}
