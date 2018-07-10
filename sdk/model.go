@@ -678,8 +678,8 @@ type RequestGetBlockStorageSnapshotInstanceList struct {
 	PageSize                           int
 }
 
-// RequestLaunchConfigurationList is request type for Launch Configuration List
-type RequestLaunchConfigurationList struct {
+// RequestGetLaunchConfigurationList is request type for Launch Configuration List
+type RequestGetLaunchConfigurationList struct {
 	LaunchConfigurationNameList []string
 	PageNo                      int
 	PageSize                    int

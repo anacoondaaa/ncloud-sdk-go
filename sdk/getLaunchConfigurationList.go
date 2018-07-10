@@ -10,7 +10,7 @@ import (
 	request "github.com/NaverCloudPlatform/ncloud-sdk-go/request"
 )
 
-func processGetLaunchConfigurationListParams(reqParams *RequestLaunchConfigurationList) (map[string]string, error) {
+func processGetLaunchConfigurationListParams(reqParams *RequestGetLaunchConfigurationList) (map[string]string, error) {
 	params := make(map[string]string)
 
 	if reqParams == nil {
@@ -58,8 +58,8 @@ func processGetLaunchConfigurationListParams(reqParams *RequestLaunchConfigurati
 	return params, nil
 }
 
-// GetLaunchConfigurationList get public ip instance list
-func (s *Conn) GetLaunchConfigurationList(reqParams *RequestLaunchConfigurationList) (*LaunchConfigurationList, error) {
+// GetLaunchConfigurationList get launch configuration list
+func (s *Conn) GetLaunchConfigurationList(reqParams *RequestGetLaunchConfigurationList) (*LaunchConfigurationList, error) {
 	params, err := processGetLaunchConfigurationListParams(reqParams)
 	if err != nil {
 		return nil, err

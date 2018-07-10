@@ -10,7 +10,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = FDescribe("Get Launch Configuration List", func() {
+var _ = Describe("Get Launch Configuration List", func() {
 	Describe("Get all Launch Configuration List", func() {
 		BeforeEach(func() {
 			gock.New("https://api.ncloud.com").
@@ -114,7 +114,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 			gock.Off()
 		})
 		It("should get One Launch Configuration", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.LaunchConfigurationNameList = []string{"wefwfwf"}
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.GetLaunchConfigurationList(reqParams)
@@ -161,7 +161,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 			gock.Off()
 		})
 		It("should get No Launch Configuration list", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.LaunchConfigurationNameList = []string{"noname"}
 			conn := NewConnection(accessKey, secretKey)
 			result, err := conn.GetLaunchConfigurationList(reqParams)
@@ -220,7 +220,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 
 	Describe("Check Arguments", func() {
 		It("should be error : 'Value of PageNo should be min 0 or max 2147483648'", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.PageNo = -1
 
 			conn := NewConnection(accessKey, secretKey)
@@ -230,7 +230,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 		})
 
 		It("should be error : 'Value of PageNo should be min 0 or max 2147483648'", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.PageNo = 2147483648
 
 			conn := NewConnection(accessKey, secretKey)
@@ -240,7 +240,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 		})
 
 		It("should be error : 'Value of PageSize should be min 0 or max 2147483648'", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.PageSize = -1
 
 			conn := NewConnection(accessKey, secretKey)
@@ -250,7 +250,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 		})
 
 		It("should be error : 'Value of PageSize should be min 0 or max 2147483648'", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.PageSize = 2147483648
 
 			conn := NewConnection(accessKey, secretKey)
@@ -260,7 +260,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 		})
 
 		It("should be error : 'SortedBy should be launchConfigurationName or createDate'", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.SortedBy = "wrong sortedByValue"
 
 			conn := NewConnection(accessKey, secretKey)
@@ -270,7 +270,7 @@ var _ = FDescribe("Get Launch Configuration List", func() {
 		})
 
 		It("should be error : 'SortingOrder should be ascending or descending'", func() {
-			reqParams := new(RequestLaunchConfigurationList)
+			reqParams := new(RequestGetLaunchConfigurationList)
 			reqParams.SortingOrder = "wrong SortingOrderValue"
 
 			conn := NewConnection(accessKey, secretKey)
