@@ -10,9 +10,9 @@
 package model
 
 type Region struct {
-	RegionNo string `json:"regionNo,omitempty"`
+	RegionNo *string `json:"regionNo,omitempty"`
 
-	RegionCode string `json:"regionCode,omitempty"`
+	RegionCode *string `json:"regionCode,omitempty"`
 
-	RegionName string `json:"regionName,omitempty"`
+	RegionName *string `json:"regionName,omitempty"`
 }

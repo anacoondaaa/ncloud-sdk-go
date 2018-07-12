@@ -9,11 +9,11 @@
 
 package model
 
-type CreateServerInstancesResponseWrapper struct {
-	CreateServerInstancesResponse CreateServerInstancesResponse `json:"createServerInstancesResponse,omitempty"`
+type GetServerInstanceListResponseWrapper struct {
+	GetServerInstanceListResponse GetServerInstanceListResponse `json:"getServerInstanceListResponse,omitempty"`
 }
 
-type CreateServerInstancesResponse struct {
+type GetServerInstanceListResponse struct {
 	RequestId *string `json:"requestId,omitempty"`
 
 	ReturnCode *string `json:"returnCode,omitempty"`

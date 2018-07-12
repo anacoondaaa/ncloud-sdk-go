@@ -13,7 +13,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -37,11 +36,12 @@ type V2ApiService service
 @return CreateServerInstancesResponse*/
 func (a *V2ApiService) CreateServerInstances(ctx context.Context, createServerInstancesRequest CreateServerInstancesRequest) (CreateServerInstancesResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
-		successPayload     CreateServerInstancesResponse
+		localVarHttpMethod    = strings.ToUpper("Post")
+		localVarPostBody      interface{}
+		localVarFileName      string
+		localVarFileBytes     []byte
+		successPayloadWrapper CreateServerInstancesResponseWrapper
+		successPayload        CreateServerInstancesResponse
 	)
 
 	// create path and map variables
@@ -71,7 +71,6 @@ func (a *V2ApiService) CreateServerInstances(ctx context.Context, createServerIn
 
 	localVarPostBody = &createServerInstancesRequest
 
-	log.Println(localVarPostBody)
 	v := reflect.ValueOf(localVarPostBody).Elem().FieldByName("UserData")
 	if v.IsValid() && v.CanAddr() {
 		ptr := v.Addr().Interface().(**string)
@@ -81,11 +80,9 @@ func (a *V2ApiService) CreateServerInstances(ctx context.Context, createServerIn
 	}
 
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-	// _, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return successPayload, nil, err
 	}
-	// return successPayload, nil, nil
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
@@ -97,11 +94,11 @@ func (a *V2ApiService) CreateServerInstances(ctx context.Context, createServerIn
 		return successPayload, localVarHttpResponse, reportError("Status: %v, Body: %s", localVarHttpResponse.Status, bodyBytes)
 	}
 
-	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayloadWrapper); err != nil {
 		return successPayload, localVarHttpResponse, err
 	}
 
-	return successPayload, localVarHttpResponse, err
+	return successPayloadWrapper.CreateServerInstancesResponse, localVarHttpResponse, err
 }
 
 /* V2ApiService
@@ -111,11 +108,12 @@ func (a *V2ApiService) CreateServerInstances(ctx context.Context, createServerIn
 @return AddPortForwardingRulesResponse*/
 func (a *V2ApiService) AddPortForwardingRules(ctx context.Context, addPortForwardingRulesRequest AddPortForwardingRulesRequest) (AddPortForwardingRulesResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
-		successPayload     AddPortForwardingRulesResponse
+		localVarHttpMethod    = strings.ToUpper("Post")
+		localVarPostBody      interface{}
+		localVarFileName      string
+		localVarFileBytes     []byte
+		successPayloadWrapper AddPortForwardingRulesResponseWrapper
+		successPayload        AddPortForwardingRulesResponse
 	)
 
 	// create path and map variables
@@ -145,7 +143,6 @@ func (a *V2ApiService) AddPortForwardingRules(ctx context.Context, addPortForwar
 	// body params
 	localVarPostBody = &addPortForwardingRulesRequest
 
-	log.Println(localVarPostBody)
 	v := reflect.ValueOf(localVarPostBody).Elem().FieldByName("UserData")
 	if v.IsValid() && v.CanAddr() {
 		ptr := v.Addr().Interface().(**string)
@@ -169,7 +166,79 @@ func (a *V2ApiService) AddPortForwardingRules(ctx context.Context, addPortForwar
 		return successPayload, localVarHttpResponse, reportError("Status: %v, Body: %s", localVarHttpResponse.Status, bodyBytes)
 	}
 
-	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayload); err != nil {
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayloadWrapper); err != nil {
+		return successPayload, localVarHttpResponse, err
+	}
+
+	return successPayload, localVarHttpResponse, err
+}
+
+/* V2ApiService
+서버인스턴스리스트조회
+* @param ctx context.Context for authentication, logging, tracing, etc.
+@param getServerInstanceListRequest getServerInstanceListRequest
+@return GetServerInstanceListResponse*/
+func (a *V2ApiService) GetServerInstanceList(ctx context.Context, getServerInstanceListRequest GetServerInstanceListRequest) (GetServerInstanceListResponse, *http.Response, error) {
+	var (
+		localVarHttpMethod    = strings.ToUpper("Post")
+		localVarPostBody      interface{}
+		localVarFileName      string
+		localVarFileBytes     []byte
+		successPayloadWrapper GetServerInstanceListResponseWrapper
+		successPayload        GetServerInstanceListResponse
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/getServerInstanceList"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &getServerInstanceListRequest
+
+	v := reflect.ValueOf(localVarPostBody).Elem().FieldByName("UserData")
+	if v.IsValid() && v.CanAddr() {
+		ptr := v.Addr().Interface().(**string)
+		if *ptr != nil {
+			**ptr = base64.StdEncoding.EncodeToString([]byte(**ptr))
+		}
+	}
+
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return successPayload, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+
+	if err != nil || localVarHttpResponse == nil {
+		return successPayload, localVarHttpResponse, err
+	}
+	defer localVarHttpResponse.Body.Close()
+	if localVarHttpResponse.StatusCode >= 300 {
+		bodyBytes, _ := ioutil.ReadAll(localVarHttpResponse.Body)
+		return successPayload, localVarHttpResponse, reportError("Status: %v, Body: %s", localVarHttpResponse.Status, bodyBytes)
+	}
+	if err = json.NewDecoder(localVarHttpResponse.Body).Decode(&successPayloadWrapper); err != nil {
 		return successPayload, localVarHttpResponse, err
 	}
 

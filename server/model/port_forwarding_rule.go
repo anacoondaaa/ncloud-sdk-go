@@ -12,10 +12,10 @@ package model
 type PortForwardingRule struct {
 
 	// 포트포워딩외부포트
-	PortForwardingExternalPort int32 `json:"portForwardingExternalPort,omitempty"`
+	PortForwardingExternalPort *int32 `json:"portForwardingExternalPort,omitempty"`
 
 	// 포트포워딩내부포트
-	PortForwardingInternalPort int32 `json:"portForwardingInternalPort,omitempty"`
+	PortForwardingInternalPort *int32 `json:"portForwardingInternalPort,omitempty"`
 
 	// 서버인스턴스
 	ServerInstance *ServerInstance `json:"serverInstance,omitempty"`

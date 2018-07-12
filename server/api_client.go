@@ -15,7 +15,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -166,7 +165,6 @@ func (c *APIClient) prepareRequest(
 	formParams url.Values,
 	fileName string,
 	fileBytes []byte) (localVarRequest *http.Request, err error) {
-	log.Println("pre")
 
 	var body *bytes.Buffer
 
@@ -183,7 +181,6 @@ func (c *APIClient) prepareRequest(
 			return nil, err
 		}
 	}
-	log.Println("pre1")
 
 	// add form parameters and file if available.
 	if len(formParams) > 0 || (len(fileBytes) > 0 && fileName != "") {
@@ -230,7 +227,6 @@ func (c *APIClient) prepareRequest(
 	if err != nil {
 		return nil, err
 	}
-	log.Println("pre2")
 
 	// Adding Query Param
 	query := url.Query()
@@ -239,12 +235,10 @@ func (c *APIClient) prepareRequest(
 			query.Add(k, iv)
 		}
 	}
-	log.Println("pre3")
 
 	// Encode the parameters.
 	url.RawQuery = query.Encode()
 
-	log.Println("body", body)
 	// Generate a new request
 	if body != nil {
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
@@ -422,7 +416,6 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		}
 	}
 
-	fmt.Println("result: ", result)
 	if err != nil {
 		return nil, err
 	}
