@@ -12,6 +12,7 @@ package server
 import (
 	"bytes"
 	"crypto"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -185,44 +186,44 @@ func (c *APIClient) prepareRequest(
 	log.Println("pre1")
 
 	// add form parameters and file if available.
-	// if len(formParams) > 0 || (len(fileBytes) > 0 && fileName != "") {
-	// 	if body != nil {
-	// 		return nil, errors.New("Cannot specify postBody and multipart form at the same time.")
-	// 	}
-	// 	body = &bytes.Buffer{}
-	// 	w := multipart.NewWriter(body)
+	if len(formParams) > 0 || (len(fileBytes) > 0 && fileName != "") {
+		if body != nil {
+			return nil, errors.New("Cannot specify postBody and multipart form at the same time.")
+		}
+		body = &bytes.Buffer{}
+		w := multipart.NewWriter(body)
 
-	// 	for k, v := range formParams {
-	// 		for _, iv := range v {
-	// 			if strings.HasPrefix(k, "@") { // file
-	// 				err = addFile(w, k[1:], iv)
-	// 				if err != nil {
-	// 					return nil, err
-	// 				}
-	// 			} else { // form value
-	// 				w.WriteField(k, iv)
-	// 			}
-	// 		}
-	// 	}
-	// 	if len(fileBytes) > 0 && fileName != "" {
-	// 		w.Boundary()
-	// 		//_, fileNm := filepath.Split(fileName)
-	// 		part, err := w.CreateFormFile("file", filepath.Base(fileName))
-	// 		if err != nil {
-	// 			return nil, err
-	// 		}
-	// 		_, err = part.Write(fileBytes)
-	// 		if err != nil {
-	// 			return nil, err
-	// 		}
-	// 		// Set the Boundary in the Content-Type
-	// 		headerParams["Content-Type"] = w.FormDataContentType()
-	// 	}
+		for k, v := range formParams {
+			for _, iv := range v {
+				if strings.HasPrefix(k, "@") { // file
+					err = addFile(w, k[1:], iv)
+					if err != nil {
+						return nil, err
+					}
+				} else { // form value
+					w.WriteField(k, iv)
+				}
+			}
+		}
+		if len(fileBytes) > 0 && fileName != "" {
+			w.Boundary()
+			//_, fileNm := filepath.Split(fileName)
+			part, err := w.CreateFormFile("file", filepath.Base(fileName))
+			if err != nil {
+				return nil, err
+			}
+			_, err = part.Write(fileBytes)
+			if err != nil {
+				return nil, err
+			}
+			// Set the Boundary in the Content-Type
+			headerParams["Content-Type"] = w.FormDataContentType()
+		}
 
-	// 	// Set Content-Length
-	// 	headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
-	// 	w.Close()
-	// }
+		// Set Content-Length
+		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
+		w.Close()
+	}
 
 	// Setup path and query parameters
 	url, err := url.Parse(path)
@@ -351,36 +352,71 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		bodyBuf = &bytes.Buffer{}
 	}
 
-	result := ""
+	result := "responseFormatType=json"
 	s := reflect.ValueOf(body).Elem()
 	typeOfT := s.Type()
 	for i := 0; i < s.NumField(); i++ {
 		f := s.Field(i)
 
 		if !f.IsNil() {
-			if result != "" {
-				result += "&"
-			}
-			fmt.Printf("%d: %s %s = %v\n", i,
-				typeOfT.Field(i).Name, f.Type().String(), f.Interface())
-
 			key := toLowerFirstChar(typeOfT.Field(i).Name)
-			switch f.Type().String() {
-			case "*string":
-				result += fmt.Sprintf("%s=%s", key, ncloud.StringValue(f.Interface().(*string)))
-			case "*bool":
-				result += fmt.Sprintf("%s=%t", key, ncloud.BoolValue(f.Interface().(*bool)))
-			case "*int":
-				result += fmt.Sprintf("%s=%d", key, ncloud.IntValue(f.Interface().(*int)))
-			case "*int32":
-				result += fmt.Sprintf("%s=%d", key, ncloud.Int32Value(f.Interface().(*int32)))
-			case "*int64":
-				result += fmt.Sprintf("%s=%d", key, ncloud.Int64Value(f.Interface().(*int64)))
-			case "*float32":
-				result += fmt.Sprintf("%s=%f", key, ncloud.Float32Value(f.Interface().(*float32)))
-			case "[]*string":
-				for i, j := range f.Interface().([]*string) {
-					result += fmt.Sprintf("%s.%d=%s", key, i+1, ncloud.StringValue(j))
+			if f.Kind() == reflect.Ptr {
+				switch f.Type().String() {
+				case "*string":
+					result += fmt.Sprintf("&%s=%s", key, ncloud.StringValue(f.Interface().(*string)))
+				case "*bool":
+					result += fmt.Sprintf("&%s=%t", key, ncloud.BoolValue(f.Interface().(*bool)))
+				case "*int":
+					result += fmt.Sprintf("&%s=%d", key, ncloud.IntValue(f.Interface().(*int)))
+				case "*int32":
+					result += fmt.Sprintf("&%s=%d", key, ncloud.Int32Value(f.Interface().(*int32)))
+				case "*int64":
+					result += fmt.Sprintf("&%s=%d", key, ncloud.Int64Value(f.Interface().(*int64)))
+				case "*float32":
+					result += fmt.Sprintf("&%s=%f", key, ncloud.Float32Value(f.Interface().(*float32)))
+				}
+			} else if f.Kind() == reflect.Slice {
+				for i := 0; i < f.Len(); i++ {
+					item := f.Index(i)
+
+					if item.Kind() == reflect.Ptr {
+						switch item.Type().String() {
+						case "*string":
+							result += fmt.Sprintf("&%s.%d=%s", key, i+1, ncloud.StringValue(item.Interface().(*string)))
+						case "*bool":
+							result += fmt.Sprintf("&%s.%d=%t", key, i+1, ncloud.BoolValue(item.Interface().(*bool)))
+						case "*int":
+							result += fmt.Sprintf("&%s.%d=%d", key, i+1, ncloud.IntValue(item.Interface().(*int)))
+						case "*int32":
+							result += fmt.Sprintf("&%s.%d=%d", key, i+1, ncloud.Int32Value(item.Interface().(*int32)))
+						case "*int64":
+							result += fmt.Sprintf("&%s.%d=%d", key, i+1, ncloud.Int64Value(item.Interface().(*int64)))
+						case "*float32":
+							result += fmt.Sprintf("&%s.%d=%f", key, i+1, ncloud.Float32Value(item.Interface().(*float32)))
+						}
+					} else if item.Kind() == reflect.Struct {
+						typeOfSubItem := item.Type()
+
+						for j := 0; j < item.NumField(); j++ {
+							subItem := item.Field(j)
+							subKey := toLowerFirstChar(typeOfSubItem.Field(j).Name)
+
+							switch subItem.Type().String() {
+							case "*string":
+								result += fmt.Sprintf("&%s.%d.%s=%s", key, i+1, subKey, ncloud.StringValue(subItem.Interface().(*string)))
+							case "*bool":
+								result += fmt.Sprintf("&%s.%d.%s=%t", key, i+1, subKey, ncloud.BoolValue(subItem.Interface().(*bool)))
+							case "*int":
+								result += fmt.Sprintf("&%s.%d.%s=%d", key, i+1, subKey, ncloud.IntValue(subItem.Interface().(*int)))
+							case "*int32":
+								result += fmt.Sprintf("&%s.%d.%s=%d", key, i+1, subKey, ncloud.Int32Value(subItem.Interface().(*int32)))
+							case "*int64":
+								result += fmt.Sprintf("&%s.%d.%s=%d", key, i+1, subKey, ncloud.Int64Value(subItem.Interface().(*int64)))
+							case "*float32":
+								result += fmt.Sprintf("&%s.%d.%s=%f", key, i+1, subKey, ncloud.Float32Value(subItem.Interface().(*float32)))
+							}
+						}
+					}
 				}
 			}
 		}
@@ -391,7 +427,6 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		return nil, err
 	}
 
-	// return nil, errors.New("temp error")
 	bodyBuf.WriteString(result)
 
 	if bodyBuf.Len() == 0 {
