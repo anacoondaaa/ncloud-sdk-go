@@ -462,6 +462,7 @@ type PortForwardingRule struct {
 	ServerInstanceNo           string `xml:"serverInstance>serverInstanceNo"`
 	PortForwardingExternalPort string `xml:"portForwardingExternalPort"`
 	PortForwardingInternalPort string `xml:"portForwardingInternalPort"`
+	PortForwardingPublicIp     string `xml:"serverInstance>portForwardingPublicIp"`
 }
 
 type RequestAddPortForwardingRules struct {
