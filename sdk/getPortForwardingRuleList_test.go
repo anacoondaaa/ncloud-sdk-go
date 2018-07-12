@@ -161,6 +161,7 @@ var _ = Describe("Get Port Forwarding List", func() {
 			Expect(portForwardingRule.PortForwardingExternalPort).To(Equal("1025"))
 			Expect(portForwardingRule.PortForwardingInternalPort).To(Equal("3389"))
 			Expect(portForwardingRule.ServerInstanceNo).To(Equal("274079"))
+			Expect(portForwardingRule.PortForwardingPublicIp).To(Equal("192.168.120.28"))
 		})
 	})
 
