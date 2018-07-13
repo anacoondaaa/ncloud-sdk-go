@@ -22,6 +22,13 @@ var _ = Describe("Get Port Forwarding List", func() {
     <portForwardingConfigurationNo>1676</portForwardingConfigurationNo>
     <portForwardingPublicIp>192.168.120.28</portForwardingPublicIp>
     <totalRows>2</totalRows>
+	<zone>
+		<zoneNo>2</zoneNo>
+		<zoneName>KR-1</zoneName>
+		<zoneCode>KR-1</zoneCode>
+		<zoneDescription>가산 zone</zoneDescription>
+		<regionNo>1</regionNo>
+	</zone>
     <portForwardingRuleList>
         <portForwardingRule>
             <portForwardingExternalPort>1025</portForwardingExternalPort>
@@ -156,6 +163,7 @@ var _ = Describe("Get Port Forwarding List", func() {
 
 			Expect(result.PortForwardingConfigurationNo).To(Equal(1676))
 			Expect(result.PortForwardingPublicIp).To(Equal("192.168.120.28"))
+			Expect(result.Zone.ZoneCode).To(Equal("KR-1"))
 
 			portForwardingRule := result.PortForwardingRuleList[0]
 			Expect(portForwardingRule.PortForwardingExternalPort).To(Equal("1025"))
