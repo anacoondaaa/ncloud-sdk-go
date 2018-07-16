@@ -79,6 +79,9 @@ var _ = Describe("Get NAS Volume Instance List", func() {
 			Expect(nasVolumeInstance.NasVolumeInstanceStatus.Code).To(Equal("CREAT"))
 			Expect(nasVolumeInstance.VolumeAllotmentProtocolType.Code).To(Equal("NFS"))
 			Expect(nasVolumeInstance.VolumeName).To(Equal("n000203_nangtest01"))
+
+			customIPList := nasVolumeInstance.NasVolumeInstanceCustomIPList[0]
+			Expect(customIPList.CustomIP).To(Equal("10.113.177.15"))
 		})
 	})
 
@@ -100,8 +103,8 @@ var _ = Describe("Get NAS Volume Instance List", func() {
 		It("should get No NAS Volume Instance List", func() {
 			reqParams := &RequestGetNasVolumeInstanceList{
 				VolumeAllotmentProtocolTypeCode: "NFS",
-				IsEventConfiguration: "false",
-				IsSnapshotConfiguration: "false",
+				IsEventConfiguration:            "false",
+				IsSnapshotConfiguration:         "false",
 			}
 
 			conn := NewConnection(accessKey, secretKey)
