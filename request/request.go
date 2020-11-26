@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"oss.navercorp.com/ncloud/ncp-sdk-go/oauth"
+	"github.com/anacoondaaa/ncloud-sdk-go/oauth"
 )
 
 func encryptHmacSha256(message, secretKey string) string {
