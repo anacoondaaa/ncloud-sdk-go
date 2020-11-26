@@ -14,7 +14,8 @@ func (s *Conn) GetRegionList() (*RegionList, error) {
 	params := make(map[string]string)
 	params["action"] = "getRegionList"
 
-	bytes, resp, err := request.NewRequest(s.accessKey, s.secretKey, "GET", s.apiURL+"server/", params)
+	fmt.Println("GetRegionList")
+	bytes, resp, err := request.NewRequest(s.accessKey, s.secretKey, "GET", s.apiURL, params)
 	if err != nil {
 		return nil, err
 	}

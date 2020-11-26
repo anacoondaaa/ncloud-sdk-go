@@ -6,12 +6,11 @@ import (
 	_ "crypto/sha1"
 	"encoding/base64"
 	"fmt"
-	"io"
 	"math/rand"
 	"net/url"
+	"os"
 	"sort"
 	"strconv"
-	"strings"
 	"sync"
 	"time"
 )
@@ -205,50 +204,19 @@ func (c *Consumer) Debug(enabled bool) {
 	c.signer.Debug(enabled)
 }
 
-func (c *Consumer) GetRequest() (string, io.Reader, error) {
+func (c *Consumer) GetRequestUrl() (loginUrl string, err error) {
+	if os.Getenv("GO_ENV") == "development" {
+		c.AdditionalParams["approachKey"] = c.consumerKey
+		c.AdditionalParams["secretKey"] = c.consumerSecret
+	}
 	c.AdditionalParams["responseFormatType"] = "xml"
 
-	params := c.baseParams(c.consumerKey, c.AdditionalParams)
-
-	if c.debug {
-		fmt.Println("params:", params)
-	}
-
 	req := &request{
-		method:      c.requestMethod,
-		url:         c.requestURL,
-		oauthParams: params,
+		method: c.requestMethod,
+		url:    c.requestURL,
 	}
 
-	signature, err := c.signRequest(req)
-	if err != nil {
-		return "", nil, err
-	}
-
-	result := ""
-
-	for pos, key := range req.oauthParams.Keys() {
-		for innerPos, value := range req.oauthParams.Get(key) {
-			if pos+innerPos != 0 {
-				result += "&"
-			}
-			result += fmt.Sprintf("%s=%s", key, value)
-		}
-	}
-
-	result += fmt.Sprintf("&%s=%s", SIGNATURE_PARAM, escape(signature))
-
-	if c.debug {
-		fmt.Println("req: ", result)
-	}
-
-	if req.method == "GET" {
-		return req.url + "?" + result, nil, nil
-	} else if req.method == "POST" {
-		return req.url, strings.NewReader(result), nil
-	} else {
-		return "", nil, fmt.Errorf("Not supported method %s", req.method)
-	}
+	return req.url, nil
 }
 
 func (c *Consumer) baseParams(consumerKey string, additionalParams map[string]string) *OrderedParams {
