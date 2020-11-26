@@ -1,7 +1,7 @@
 package common_test
 
 import (
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/common"
+	. "github.com/anacoondaaa/ncloud-sdk-go/common"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

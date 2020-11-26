@@ -7,8 +7,8 @@ import (
 
 	"strconv"
 
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/common"
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
+	"github.com/anacoondaaa/ncloud-sdk-go/common"
+	"github.com/anacoondaaa/ncloud-sdk-go/request"
 )
 
 func processCreateNasVolumeInstance(reqParams *RequestCreateNasVolumeInstance) (map[string]string, error) {

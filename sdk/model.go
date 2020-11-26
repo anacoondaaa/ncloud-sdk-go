@@ -1,7 +1,7 @@
 package sdk
 
 import (
-	common "github.com/NaverCloudPlatform/ncloud-sdk-go/common"
+	common "github.com/anacoondaaa/ncloud-sdk-go/common"
 )
 
 type Conn struct {

@@ -4,10 +4,10 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"github.com/anacoondaaa/ncloud-sdk-go/common"
+	"github.com/anacoondaaa/ncloud-sdk-go/request"
 	"net/http"
 	"strconv"
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/common"
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
 )
 
 func processGetBlockStorageSnapshotInstanceListParams(reqParams *RequestGetBlockStorageSnapshotInstanceList) (map[string]string, error) {

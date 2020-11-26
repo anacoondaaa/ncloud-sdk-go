@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -80,7 +80,6 @@ var _ = Describe("Create Block Storage Snapshot Instance", func() {
 		})
 	})
 
-
 	Describe("Unable to create Block Storage Snapshot Instance", func() {
 		Context("when invalid BlockStorageInstanceNo is invalid", func() {
 			BeforeEach(func() {
@@ -100,8 +99,8 @@ var _ = Describe("Create Block Storage Snapshot Instance", func() {
 			It("should fail", func() {
 				reqParams := new(RequestCreateBlockStorageSnapshotInstance)
 				reqParams.BlockStorageInstanceNo = "blockstorage"
-				reqParams.BlockStorageSnapshotName ="BlockStorageSnapshotInstance"
-				reqParams.BlockStorageSnapshotDescription ="Block Storage Snapshot Instance by SDK go"
+				reqParams.BlockStorageSnapshotName = "BlockStorageSnapshotInstance"
+				reqParams.BlockStorageSnapshotDescription = "Block Storage Snapshot Instance by SDK go"
 
 				conn := NewConnection(accessKey, secretKey)
 				result, err := conn.CreateBlockStorageSnapshotInstance(reqParams)
@@ -114,7 +113,6 @@ var _ = Describe("Create Block Storage Snapshot Instance", func() {
 			})
 		})
 	})
-
 
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
@@ -140,7 +138,6 @@ var _ = Describe("Create Block Storage Snapshot Instance", func() {
 			Expect(err.Error()).To(ContainSubstring("401 Unauthorized"))
 		})
 	})
-
 
 	Describe("Check Arguments", func() {
 		It("should be error : BlockStorageInstanceNo field is required", func() {

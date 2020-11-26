@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	common "github.com/NaverCloudPlatform/ncloud-sdk-go/common"
-	request "github.com/NaverCloudPlatform/ncloud-sdk-go/request"
+	common "github.com/anacoondaaa/ncloud-sdk-go/common"
+	request "github.com/anacoondaaa/ncloud-sdk-go/request"
 )
 
 // GetRegionList gets region list
