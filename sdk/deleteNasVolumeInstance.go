@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/anacoondaaa/ncloud-sdk-go/common"
-	"github.com/anacoondaaa/ncloud-sdk-go/request"
+	"github.com/NaverCloudPlatform/ncloud-sdk-go/common"
+	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
 )
 
 func processDeleteNasVolumeInstanceParams(nasVolumeInstanceNo string) (map[string]string, error) {

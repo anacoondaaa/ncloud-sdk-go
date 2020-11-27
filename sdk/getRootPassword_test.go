@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
+	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	gock "gopkg.in/h2non/gock.v1"

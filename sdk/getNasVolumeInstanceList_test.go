@@ -1,7 +1,7 @@
 package sdk_test
 
 import (
-	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
+	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"

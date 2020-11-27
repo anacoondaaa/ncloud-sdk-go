@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strconv"
 
-	common "github.com/anacoondaaa/ncloud-sdk-go/common"
-	request "github.com/anacoondaaa/ncloud-sdk-go/request"
+	common "github.com/NaverCloudPlatform/ncloud-sdk-go/common"
+	request "github.com/NaverCloudPlatform/ncloud-sdk-go/request"
 )
 
 func processCreateLoadBalancerInstanceParams(reqParams *RequestCreateLoadBalancerInstance) (map[string]string, error) {
