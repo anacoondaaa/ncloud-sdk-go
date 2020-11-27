@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"math/rand"
 	"net/url"
-	"os"
 	"sort"
 	"strconv"
 	"sync"
@@ -205,10 +204,6 @@ func (c *Consumer) Debug(enabled bool) {
 }
 
 func (c *Consumer) GetRequestUrl() (loginUrl string, err error) {
-	if os.Getenv("GO_ENV") == "development" {
-		c.AdditionalParams["approachKey"] = c.consumerKey
-		c.AdditionalParams["secretKey"] = c.consumerSecret
-	}
 	c.AdditionalParams["responseFormatType"] = "xml"
 
 	req := &request{

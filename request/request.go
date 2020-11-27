@@ -21,16 +21,8 @@ func encryptHmacSha256(message, secretKey string) string {
 
 // NewRequest is http request with oauth
 func NewRequest(accessKey string, secretKey string, method string, url string, params map[string]string) ([]byte, *http.Response, error) {
-	c := oauth.NewConsumer(accessKey, secretKey, method, url)
+	reqURL := url + params["action"]
 
-	for k, v := range params {
-		c.AdditionalParams[k] = v
-	}
-
-	reqURL, err := c.GetRequestUrl()
-	if err != nil {
-		return nil, nil, err
-	}
 	now := time.Now()
 	timestamp := strconv.FormatInt(now.Unix(), 10)
 
@@ -39,7 +31,9 @@ func NewRequest(accessKey string, secretKey string, method string, url string, p
 		return nil, nil, err
 	}
 
-	message := method + " " + url + "\n" + timestamp + "\n" + accessKey
+	uri := "/server/v2/" + params["action"]
+
+	message := method + " " + uri + "\n" + timestamp + "\n" + accessKey
 
 	apigwSignature := encryptHmacSha256(message, secretKey)
 
