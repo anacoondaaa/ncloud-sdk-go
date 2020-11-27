@@ -20,26 +20,37 @@ func encryptHmacSha256(message, secretKey string) string {
 }
 
 // NewRequest is http request with oauth
-func NewRequest(accessKey string, secretKey string, method string, url string, params map[string]string) ([]byte, *http.Response, error) {
-	reqURL := url + params["action"]
+func NewRequest(accessKey, secretKey, method, url, urn string, params map[string]string) ([]byte, *http.Response, error) {
+	c := oauth.NewConsumer(accessKey, secretKey, method, url)
+
+	for k, v := range params {
+		c.AdditionalParams[k] = v
+	}
 
 	now := time.Now()
-	timestamp := strconv.FormatInt(now.Unix(), 10)
+	timestamp := strconv.FormatInt(int64(time.Nanosecond)*now.UnixNano()/int64(time.Millisecond), 10)
 
-	req, err := http.NewRequest(method, reqURL, nil)
+	reqURL, body, err := c.GetRequest(url + urn)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	uri := "/server/v2/" + params["action"]
+	req, err := http.NewRequest(method, reqURL, body)
+	if err != nil {
+		return nil, nil, err
+	}
 
-	message := method + " " + uri + "\n" + timestamp + "\n" + accessKey
+	message := method + " " + urn + "\n" + timestamp + "\n" + accessKey
 
 	apigwSignature := encryptHmacSha256(message, secretKey)
 
 	req.Header.Set("x-ncp-iam-access-key", accessKey)
 	req.Header.Set("x-ncp-apigw-signature-v2", apigwSignature)
 	req.Header.Set("x-ncp-apigw-timestamp", timestamp)
+
+	if method == "POST" {
+		req.Header.Set("Content-Type", "application/x-www-form-urlencoded; param=value")
+	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)

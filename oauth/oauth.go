@@ -6,10 +6,11 @@ import (
 	_ "crypto/sha1"
 	"encoding/base64"
 	"fmt"
+	"io"
 	"math/rand"
 	"net/url"
 	"sort"
-	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
@@ -203,30 +204,42 @@ func (c *Consumer) Debug(enabled bool) {
 	c.signer.Debug(enabled)
 }
 
-func (c *Consumer) GetRequestUrl() (loginUrl string, err error) {
+func (c *Consumer) GetRequest(url string) (string, io.Reader, error) {
 	c.AdditionalParams["responseFormatType"] = "xml"
+	params := c.baseParams(c.AdditionalParams)
+
+	if c.debug {
+		fmt.Println("params:", params)
+	}
 
 	req := &request{
-		method: c.requestMethod,
-		url:    c.requestURL,
+		method:      c.requestMethod,
+		url:         url,
+		oauthParams: params,
 	}
 
-	return req.url, nil
-}
+	result := ""
 
-func (c *Consumer) baseParams(consumerKey string, additionalParams map[string]string) *OrderedParams {
-	params := NewOrderedParams()
-	params.Add(VERSION_PARAM, OAUTH_VERSION)
-	params.Add(SIGNATURE_METHOD_PARAM, c.signer.SignatureMethod())
-	params.Add(TIMESTAMP_PARAM, strconv.FormatInt(c.clock.Seconds(), 10))
-	params.Add(NONCE_PARAM, strconv.FormatInt(c.nonceGenerator.Int63(), 10))
-	params.Add(CONSUMER_KEY_PARAM, consumerKey)
-
-	for key, value := range additionalParams {
-		params.Add(key, value)
+	for pos, key := range params.Keys() {
+		for innerPos, value := range params.Get(key) {
+			if pos+innerPos != 0 {
+				result += "&"
+			}
+			result += fmt.Sprintf("%s=%s", key, value)
+		}
 	}
 
-	return params
+	if c.debug {
+		fmt.Println("req: ", result)
+	}
+
+	if req.method == "GET" {
+		return req.url + "?" + result, nil, nil
+	} else if req.method == "POST" {
+		return req.url, strings.NewReader(result), nil
+	} else {
+		return "", nil, fmt.Errorf("Not supported method %s", req.method)
+	}
 }
 
 func (c *Consumer) signRequest(req *request) (string, error) {
@@ -242,6 +255,16 @@ func (c *Consumer) signRequest(req *request) (string, error) {
 	}
 
 	return signature, nil
+}
+
+func (c *Consumer) baseParams(additionalParams map[string]string) *OrderedParams {
+	params := NewOrderedParams()
+
+	for key, value := range additionalParams {
+		params.Add(key, value)
+	}
+
+	return params
 }
 
 func (c *Consumer) requestString(method string, url string, params *OrderedParams) string {

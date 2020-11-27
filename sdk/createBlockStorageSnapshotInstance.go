@@ -36,9 +36,7 @@ func (s *Conn) CreateBlockStorageSnapshotInstance(reqParams *RequestCreateBlockS
 		return nil, err
 	}
 
-	params["action"] = "createBlockStorageSnapshotInstance"
-
-	bytes, resp, err := request.NewRequest(s.accessKey, s.secretKey, "POST", s.apiURL+"server/", params)
+	bytes, resp, err := request.NewRequest(s.accessKey, s.secretKey, "POST", s.apiURL, "/server/v2/createBlockStorageSnapshotInstance", params)
 	if err != nil {
 		return nil, err
 	}
