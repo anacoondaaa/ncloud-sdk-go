@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Delete Launch Configuration", func() {
 	Describe("Delete Launch Configuration", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/autoscaling").
 				Reply(http.StatusOK).BodyString(`<deleteAutoScalingLaunchConfigurationResponse>
 				<requestId>4b8f08f4-eef7-42ba-9a2c-791ad979cf1d</requestId>
@@ -37,7 +37,7 @@ var _ = Describe("Delete Launch Configuration", func() {
 
 	Describe("Not exist Launch Configuration name", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/autoscaling").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 				<returnCode>50120</returnCode>

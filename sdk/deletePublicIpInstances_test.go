@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Delete Public IP Instances", func() {
 	Describe("Delete Public IP Instances", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`<deletePublicIpInstancesResponse>
 					<requestId>f6c7908e-936c-42ad-9e3b-73e4b0765f59</requestId>
@@ -73,7 +73,7 @@ var _ = Describe("Delete Public IP Instances", func() {
 
 	Describe("Invalid Public IP number", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10713</returnCode>
@@ -100,7 +100,7 @@ var _ = Describe("Delete Public IP Instances", func() {
 
 	Describe("Unable to delete", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>24073</returnCode>

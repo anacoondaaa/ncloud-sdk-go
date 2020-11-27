@@ -4,8 +4,8 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/common"
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
+	"github.com/anacoondaaa/ncloud-sdk-go/common"
+	"github.com/anacoondaaa/ncloud-sdk-go/request"
 	"net/http"
 )
 

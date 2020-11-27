@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Create Block Storage Snapshot Instance", func() {
 	Describe("Create Block Storage Snapshot Instance", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`<createBlockStorageSnapshotInstanceResponse>
    				<script />
@@ -83,7 +83,7 @@ var _ = Describe("Create Block Storage Snapshot Instance", func() {
 	Describe("Unable to create Block Storage Snapshot Instance", func() {
 		Context("when invalid BlockStorageInstanceNo is invalid", func() {
 			BeforeEach(func() {
-				gock.New("https://api.ncloud.com").
+				gock.New("https://ncloud.apigw.ntruss.com").
 					Post("/server").
 					Reply(http.StatusInternalServerError).BodyString(`<responseError>
 						<returnCode>1300</returnCode>
@@ -116,7 +116,7 @@ var _ = Describe("Create Block Storage Snapshot Instance", func() {
 
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>

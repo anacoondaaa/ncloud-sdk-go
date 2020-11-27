@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Delete Login Key", func() {
 	Describe("Delete Login Key", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`<deleteLoginKeyResponse>
 					<requestId>aec19696-46c3-4841-967b-ce5399d151cf</requestId>
@@ -37,7 +37,7 @@ var _ = Describe("Delete Login Key", func() {
 
 	Describe("Not exist login key name", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10406</returnCode>

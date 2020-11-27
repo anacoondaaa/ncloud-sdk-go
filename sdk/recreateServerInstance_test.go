@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Recreate Server Instance", func() {
 	Describe("Recreate linux server instance", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`<recreateServerInstanceResponse>
 					<requestId>77868086-533e-4b31-8722-b6e84dfdcddd</requestId>
@@ -110,7 +110,7 @@ var _ = Describe("Recreate Server Instance", func() {
 
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>

@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/common"
-	"github.com/NaverCloudPlatform/ncloud-sdk-go/request"
+	"github.com/anacoondaaa/ncloud-sdk-go/common"
+	"github.com/anacoondaaa/ncloud-sdk-go/request"
 )
 
 func processDeletePortForwardingRules(reqParams *RequestDeletePortForwardingRules) (map[string]string, error) {

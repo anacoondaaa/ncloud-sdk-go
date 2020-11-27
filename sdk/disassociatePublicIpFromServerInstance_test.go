@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Disassociate Public IP From Server Instance", func() {
 	Describe("Disassociate Public IP From Server Instance", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`<disassociatePublicIpFromServerInstanceResponse>
 					<requestId>bd83cf83-0361-4c74-aa2e-3e5243a58f1d</requestId>
@@ -136,7 +136,7 @@ var _ = Describe("Disassociate Public IP From Server Instance", func() {
 
 	Describe("Unable to disassociate", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 						<returnCode>28102</returnCode>

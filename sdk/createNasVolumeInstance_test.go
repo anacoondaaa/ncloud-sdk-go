@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Create NAS Volume Instance", func() {
 	Describe("Create NAS Volume Instance", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`<createNasVolumeInstanceResponse>
     <requestId>58574752-49cb-411f-8710-e0fc6c28b8a7</requestId>
@@ -98,7 +98,7 @@ var _ = Describe("Create NAS Volume Instance", func() {
 
 	Describe("The server information for setting up NFS is invalid", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>24138</returnCode>

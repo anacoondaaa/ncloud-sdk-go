@@ -1,7 +1,7 @@
 package sdk_test
 
 import (
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -11,7 +11,7 @@ import (
 var _ = Describe("Delete NAS Volume Instance", func() {
 	Describe("Delete NAS Volume Instance", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(200).BodyString(`<deleteNasVolumeInstanceResponse>
     <requestId>d131a03a-ecc4-407d-88d9-059911b34f74</requestId>

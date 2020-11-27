@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Add Load Balancer SSL Certicate", func() {
 	Describe("Add Load Balancer SSL Certicate", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/loadbalancer").
 				Reply(http.StatusOK).BodyString(`
 <addLoadBalancerSslCertificateResponse>
@@ -147,7 +147,7 @@ Kp6GlcmqTBU7RXAwPE4MeQ20yMmdipoPMb8nug==
 
 	Describe("Invalid SSL Certificate keys", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/loadbalancer").
 				Reply(http.StatusBadRequest).BodyString(`
 					<responseError>
@@ -179,7 +179,7 @@ Kp6GlcmqTBU7RXAwPE4MeQ20yMmdipoPMb8nug==
 
 	Describe("Authorize fail", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/loadbalancer").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>
@@ -210,7 +210,7 @@ MIIDGDCCAgACCQDGDiYiQixnsTANBgkqhkiG9w0BAQsFADBOMQswCQYDVQQGEwJL
 
 	Describe("Expired URL", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/loadbalancer").
 				Reply(http.StatusUnauthorized).BodyString(`<responseError>
 					<returnCode>800</returnCode>

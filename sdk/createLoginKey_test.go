@@ -3,7 +3,7 @@ package sdk_test
 import (
 	"net/http"
 
-	. "github.com/NaverCloudPlatform/ncloud-sdk-go/sdk"
+	. "github.com/anacoondaaa/ncloud-sdk-go/sdk"
 	gock "gopkg.in/h2non/gock.v1"
 
 	. "github.com/onsi/ginkgo"
@@ -13,7 +13,7 @@ import (
 var _ = Describe("Create Login Key", func() {
 	Describe("Create Login Key", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusOK).BodyString(`<createLoginKeyResponse>
 					<requestId>ca6f393c-8a90-4023-ac40-93bcf77dd653</requestId>
@@ -41,7 +41,7 @@ var _ = Describe("Create Login Key", func() {
 
 	Describe("Exist login key name", func() {
 		BeforeEach(func() {
-			gock.New("https://api.ncloud.com").
+			gock.New("https://ncloud.apigw.ntruss.com").
 				Post("/server").
 				Reply(http.StatusBadRequest).BodyString(`<responseError>
 					<returnCode>10405</returnCode>
