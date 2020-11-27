@@ -205,7 +205,6 @@ func (c *Consumer) Debug(enabled bool) {
 }
 
 func (c *Consumer) GetRequest(url string) (string, io.Reader, error) {
-	c.AdditionalParams["responseFormatType"] = "xml"
 	params := c.baseParams(c.AdditionalParams)
 
 	if c.debug {
@@ -234,6 +233,10 @@ func (c *Consumer) GetRequest(url string) (string, io.Reader, error) {
 	}
 
 	if req.method == "GET" {
+		if result == "" {
+			return req.url, nil, nil
+		}
+
 		return req.url + "?" + result, nil, nil
 	} else if req.method == "POST" {
 		return req.url, strings.NewReader(result), nil
