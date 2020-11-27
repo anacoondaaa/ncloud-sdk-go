@@ -30,9 +30,14 @@ func NewRequest(accessKey, secretKey, method, url, urn string, params map[string
 	now := time.Now()
 	timestamp := strconv.FormatInt(int64(time.Nanosecond)*now.UnixNano()/int64(time.Millisecond), 10)
 
-	reqURL, body, err := c.GetRequest(url + urn)
+	reqURL, getParams, body, err := c.GetRequest(url + urn)
 	if err != nil {
 		return nil, nil, err
+	}
+
+	if method == "GET" && getParams != "" {
+		reqURL += "?" + getParams
+		urn += "?" + getParams
 	}
 
 	req, err := http.NewRequest(method, reqURL, body)

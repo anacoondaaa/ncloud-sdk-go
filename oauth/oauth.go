@@ -204,7 +204,7 @@ func (c *Consumer) Debug(enabled bool) {
 	c.signer.Debug(enabled)
 }
 
-func (c *Consumer) GetRequest(url string) (string, io.Reader, error) {
+func (c *Consumer) GetRequest(url string) (string, string, io.Reader, error) {
 	params := c.baseParams(c.AdditionalParams)
 
 	if c.debug {
@@ -233,15 +233,11 @@ func (c *Consumer) GetRequest(url string) (string, io.Reader, error) {
 	}
 
 	if req.method == "GET" {
-		if result == "" {
-			return req.url, nil, nil
-		}
-
-		return req.url + "?" + result, nil, nil
+		return req.url, result, nil, nil
 	} else if req.method == "POST" {
-		return req.url, strings.NewReader(result), nil
+		return req.url, "", strings.NewReader(result), nil
 	} else {
-		return "", nil, fmt.Errorf("Not supported method %s", req.method)
+		return "", "", nil, fmt.Errorf("Not supported method %s", req.method)
 	}
 }
 
